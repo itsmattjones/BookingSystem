@@ -14,6 +14,8 @@ public class Booking {
 
     private Boolean sendTickets;
 
+    private String encryptSalt;
+
     public String getId() { return id; }
 
     public void setId(String id) { this.id = id; }
@@ -33,5 +35,9 @@ public class Booking {
     public Boolean getSendTickets() { return sendTickets; }
 
     public void setSendTickets(Boolean sendTickets) { this.sendTickets = sendTickets; }
+
+    public String getEncryptSalt() { return encryptSalt; }
+
+    public void setEncryptSalt(String encryptSalt) { this.encryptSalt = encryptSalt; }
 
 }

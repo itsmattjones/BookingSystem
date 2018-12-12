@@ -2,6 +2,7 @@ package com.TicketIT.DataAccessObject;
 
 import com.TicketIT.Converter.MemberConverter;
 import com.TicketIT.Model.Member;
+import com.TicketIT.Utils.EncryptUtils;
 import com.mongodb.*;
 import org.bson.types.ObjectId;
 
@@ -28,6 +29,7 @@ public class MongoDBMemberDAO {
      * @return The member object created in MongoDB.
      */
     public Member CreateMember(Member member) {
+        member.setEncryptSalt(EncryptUtils.getSalt());
         DBObject doc = MemberConverter.ToDatabaseObject(member);
         this.collection.insert(doc);
         ObjectId id = (ObjectId) doc.get("_id");

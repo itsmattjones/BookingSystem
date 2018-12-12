@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.TicketIT.Converter.InvoiceConverter;
 import com.TicketIT.Model.Invoice;
+import com.TicketIT.Utils.EncryptUtils;
 import com.mongodb.*;
 import org.bson.types.ObjectId;
 
@@ -27,6 +28,7 @@ public class MongoDBInvoiceDAO {
      * @return The invoice object created in MongoDB.
      */
     public Invoice CreateInvoice(Invoice invoice) {
+        invoice.setEncryptSalt(EncryptUtils.getSalt());
         DBObject doc = InvoiceConverter.ToDatabaseObject(invoice);
         this.collection.insert(doc);
         ObjectId id = (ObjectId) doc.get("_id");

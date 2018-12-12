@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.TicketIT.Converter.CardConverter;
 import com.TicketIT.Model.Card;
+import com.TicketIT.Utils.EncryptUtils;
 import com.mongodb.*;
 import org.bson.types.ObjectId;
 
@@ -27,6 +28,7 @@ public class MongoDBCardDAO {
      * @return The card object created in MongoDB.
      */
     public Card CreateCard(Card card) {
+        card.setEncryptSalt(EncryptUtils.getSalt());
         DBObject doc = CardConverter.ToDatabaseObject(card);
         this.collection.insert(doc);
         ObjectId id = (ObjectId) doc.get("_id");

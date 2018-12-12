@@ -14,6 +14,8 @@ public class Customer {
 
     private String telephone;
 
+    private String encryptSalt;
+
     public String getId() { return id; }
 
     public void setId(String id) { this.id = id; }
@@ -33,5 +35,9 @@ public class Customer {
     public String getTelephone() { return this.telephone; }
 
     public void setTelephone(String telephone) { this.telephone = telephone; }
+
+    public String getEncryptSalt() { return encryptSalt; }
+
+    public void setEncryptSalt(String encryptSalt) { this.encryptSalt = encryptSalt; }
 
 }

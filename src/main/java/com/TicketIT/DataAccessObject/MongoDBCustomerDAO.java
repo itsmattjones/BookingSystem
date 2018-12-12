@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.TicketIT.Converter.CustomerConverter;
 import com.TicketIT.Model.Customer;
+import com.TicketIT.Utils.EncryptUtils;
 import com.mongodb.*;
 import org.bson.types.ObjectId;
 
@@ -28,6 +29,7 @@ public class MongoDBCustomerDAO {
      * @return The customer object created in MongoDB.
      */
     public Customer CreateCustomer(Customer customer) {
+        customer.setEncryptSalt(EncryptUtils.getSalt());
         DBObject doc = CustomerConverter.ToDatabaseObject(customer);
         this.collection.insert(doc);
         ObjectId id = (ObjectId) doc.get("_id");

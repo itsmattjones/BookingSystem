@@ -26,6 +26,7 @@ public class CustomerConverter {
         builder.append("name", customer.getName());
         builder.append("address", customer.getAddress());
         builder.append("telephone", customer.getTelephone());
+        builder.append("encryptSalt", customer.getEncryptSalt());
         return builder.get();
     }
 
@@ -49,6 +50,8 @@ public class CustomerConverter {
             customer.setAddress((List<String>) doc.get("address"));
         if(doc.get("telephone") != null)
             customer.setTelephone(doc.get("telephone").toString());
+        if(doc.get("encryptSalt") != null)
+            customer.setEncryptSalt(doc.get("encryptSalt").toString());
 
         return customer;
     }

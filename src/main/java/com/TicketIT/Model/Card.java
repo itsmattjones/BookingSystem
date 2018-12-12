@@ -14,6 +14,8 @@ public class Card {
 
     private String securityCode;
 
+    private String encryptSalt;
+
     public String getId() { return id; }
 
     public void setId(String id) { this.id = id; }
@@ -37,5 +39,9 @@ public class Card {
     public String getSecurityCode() { return securityCode; }
 
     public void setSecurityCode(String securityCode) { this.securityCode = securityCode; }
+
+    public String getEncryptSalt() { return encryptSalt; }
+
+    public void setEncryptSalt(String encryptSalt) { this.encryptSalt = encryptSalt; }
 
 }

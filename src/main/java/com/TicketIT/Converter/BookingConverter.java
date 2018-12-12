@@ -26,6 +26,7 @@ public class BookingConverter {
         builder.append("tickets", booking.getTickets());
         builder.append("invoiceId", booking.getInvoiceId());
         builder.append("sendTickets", booking.getSendTickets());
+        builder.append("encryptSalt", booking.getEncryptSalt());
 
         return builder.get();
     }
@@ -50,6 +51,8 @@ public class BookingConverter {
             booking.setInvoiceId(doc.get("invoiceId").toString());
         if(doc.get("sendTickets") != null)
             booking.setSendTickets(Boolean.parseBoolean(doc.get("sendTickets").toString()));
+        if(doc.get("encryptSalt") != null)
+            booking.setEncryptSalt(doc.get("encryptSalt").toString());
 
         return booking;
     }

@@ -24,6 +24,8 @@ public class InvoiceConverter {
         builder.append("amount", invoice.getAmount());
         builder.append("cardId", invoice.getCardId());
         builder.append("paid", invoice.getPaid());
+        builder.append("encryptSalt", invoice.getEncryptSalt());
+
         return builder.get();
     }
 
@@ -45,6 +47,8 @@ public class InvoiceConverter {
             invoice.setCardId(doc.get("cardId").toString());
         if(doc.get("paid") != null)
             invoice.setPaid(Boolean.parseBoolean(doc.get("paid").toString()));
+        if(doc.get("encryptSalt") != null)
+            invoice.setEncryptSalt(doc.get("encryptSalt").toString());
 
         return invoice;
     }

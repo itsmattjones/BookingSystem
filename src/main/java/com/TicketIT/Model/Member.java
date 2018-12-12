@@ -20,6 +20,8 @@ public class Member {
 
     private Boolean isAdmin;
 
+    private String encryptSalt;
+
     public String getId() { return id; }
 
     public void setId(String id) { this.id = id; }
@@ -51,4 +53,9 @@ public class Member {
     public Boolean getIsAdmin() { return this.isAdmin; }
 
     public void setIsAdmin(Boolean isAdmin) { this.isAdmin = isAdmin; }
+
+    public String getEncryptSalt() { return encryptSalt; }
+
+    public void setEncryptSalt(String encryptSalt) { this.encryptSalt = encryptSalt; }
+
 }

@@ -10,6 +10,8 @@ public class Invoice {
 
     private Boolean paid;
 
+    private String encryptSalt;
+
     public String getId() { return id; }
 
     public void setId(String id) { this.id = id; }
@@ -25,5 +27,9 @@ public class Invoice {
     public Boolean getPaid() { return paid; }
 
     public void setPaid(Boolean paid) { this.paid = paid; }
+
+    public String getEncryptSalt() { return encryptSalt; }
+
+    public void setEncryptSalt(String encryptSalt) { this.encryptSalt = encryptSalt; }
 
 }

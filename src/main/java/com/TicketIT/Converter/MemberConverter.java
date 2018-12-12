@@ -1,6 +1,7 @@
 package com.TicketIT.Converter;
 
 import com.TicketIT.Model.Member;
+import com.TicketIT.Utils.EncryptUtils;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBObject;
 import org.bson.types.ObjectId;
@@ -22,13 +23,26 @@ public class MemberConverter {
         if (member.getId() != null)
             builder = builder.append("_id", new ObjectId(member.getId()));
 
-        builder.append("email", member.getEmail());
-        builder.append("password", member.getPassword());
-        builder.append("name", member.getName());
-        builder.append("address", member.getAddress());
-        builder.append("telephone", member.getTelephone());
-        builder.append("cardId", member.getCardId());
-        builder.append("isAdmin", member.getIsAdmin());
+        // If no salt assume data corruption.
+        if(member.getEncryptSalt() != null) {
+            String salt = member.getEncryptSalt();
+            try {
+                builder.append("email", member.getEmail());
+
+                // Encrypt password.
+                builder.append("password", EncryptUtils.encrypt(member.getPassword(), salt));
+
+                builder.append("name", member.getName());
+                builder.append("address", member.getAddress());
+                builder.append("telephone", member.getTelephone());
+                builder.append("cardId", member.getCardId());
+                builder.append("isAdmin", member.getIsAdmin());
+                builder.append("encryptSalt", member.getEncryptSalt());
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
+
         return builder.get();
     }
 
@@ -46,8 +60,18 @@ public class MemberConverter {
 
         if(doc.get("email") != null)
             member.setEmail(doc.get("email").toString());
-        if(doc.get("password") != null)
-            member.setPassword(doc.get("password").toString());
+
+        // Decrypt password.
+        if(doc.get("password") != null) {
+            try {
+                String pass = EncryptUtils.decrypt(doc.get("password").toString(), doc.get("encryptSalt").toString());
+                member.setPassword(pass);
+            } catch(Exception ex) {
+                ex.printStackTrace();
+                member.setPassword(doc.get("password").toString());
+            }
+        }
+
         if(doc.get("name") != null)
             member.setName(doc.get("name").toString());
         if(doc.get("address") != null)
@@ -58,6 +82,8 @@ public class MemberConverter {
             member.setCardId(doc.get("cardId").toString());
         if(doc.get("isAdmin") != null)
             member.setIsAdmin(Boolean.parseBoolean(doc.get("isAdmin").toString()));
+        if(doc.get("encryptSalt") != null)
+            member.setEncryptSalt(doc.get("encryptSalt").toString());
 
         return member;
     }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.TicketIT.Converter.BookingConverter;
 import com.TicketIT.Model.Booking;
+import com.TicketIT.Utils.EncryptUtils;
 import com.mongodb.*;
 import org.bson.types.ObjectId;
 
@@ -28,6 +29,7 @@ public class MongoDBBookingDAO {
      * @return The booking object created in MongoDB.
      */
     public Booking CreateBooking(Booking booking) {
+        booking.setEncryptSalt(EncryptUtils.getSalt());
         DBObject doc = BookingConverter.ToDatabaseObject(booking);
         this.collection.insert(doc);
         ObjectId id = (ObjectId) doc.get("_id");
