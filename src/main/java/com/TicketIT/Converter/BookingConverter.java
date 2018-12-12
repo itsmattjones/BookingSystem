@@ -1,8 +1,10 @@
 package com.TicketIT.Converter;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.TicketIT.Model.Booking;
 import com.TicketIT.Model.Ticket;
+import com.TicketIT.Utils.EncryptUtils;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBObject;
 import org.bson.types.ObjectId;
@@ -22,11 +24,25 @@ public class BookingConverter {
         if (booking.getId() != null)
             builder = builder.append("_id", new ObjectId(booking.getId()));
 
-        builder.append("customerId", booking.getCustomerId());
-        builder.append("tickets", booking.getTickets());
-        builder.append("invoiceId", booking.getInvoiceId());
-        builder.append("sendTickets", booking.getSendTickets());
-        builder.append("encryptSalt", booking.getEncryptSalt());
+        // If no salt assume data corruption.
+        if(booking.getEncryptSalt() != null) {
+            String salt = booking.getEncryptSalt();
+            try {
+                builder.append("customerId", EncryptUtils.encrypt(booking.getCustomerId(), salt));
+
+                List<String> encryptedList = new ArrayList<>();
+                for(String ticketId : booking.getTickets()){
+                    encryptedList.add(EncryptUtils.encrypt(ticketId, salt));
+                }
+                builder.append("tickets", encryptedList);
+
+                builder.append("invoiceId", EncryptUtils.encrypt(booking.getInvoiceId(), salt));
+                builder.append("sendTickets", EncryptUtils.encrypt(booking.getSendTickets().toString(), salt));
+                builder.append("encryptSalt", booking.getEncryptSalt());
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
 
         return builder.get();
     }
@@ -43,14 +59,54 @@ public class BookingConverter {
         ObjectId id = (ObjectId) doc.get("_id");
         booking.setId(id.toString());
 
-        if(doc.get("customerId") != null)
-            booking.setCustomerId(doc.get("customerId").toString());
-        if(doc.get("tickets") != null)
-            booking.setTickets((List<String>) doc.get("tickets"));
-        if(doc.get("invoiceId") != null)
-            booking.setInvoiceId(doc.get("invoiceId").toString());
-        if(doc.get("sendTickets") != null)
-            booking.setSendTickets(Boolean.parseBoolean(doc.get("sendTickets").toString()));
+        // Decrypt customerId.
+        if(doc.get("customerId") != null) {
+            try {
+                String customerId = EncryptUtils.decrypt(doc.get("customerId").toString(), doc.get("encryptSalt").toString());
+                booking.setCustomerId(customerId);
+            } catch(Exception ex) {
+                ex.printStackTrace();
+                booking.setCustomerId(doc.get("customerId").toString());
+            }
+        }
+
+        // Decrypt tickets.
+        if(doc.get("tickets") != null) {
+            List<String> encryptedList = (List<String>) doc.get("tickets");
+            try {
+                List<String> decryptedList = new ArrayList<>();
+                for(String encryptedTicket : encryptedList) {
+                    decryptedList.add(EncryptUtils.decrypt(encryptedTicket, doc.get("encryptedSalt").toString()));
+                }
+                booking.setTickets(decryptedList);
+            } catch(Exception ex) {
+                ex.printStackTrace();
+                booking.setTickets(encryptedList);
+            }
+        }
+
+        // Decrypt invoiceId.
+        if(doc.get("invoiceId") != null) {
+            try {
+                String invoiceId = EncryptUtils.decrypt(doc.get("invoiceId").toString(), doc.get("encryptSalt").toString());
+                booking.setInvoiceId(invoiceId);
+            } catch(Exception ex) {
+                ex.printStackTrace();
+                booking.setInvoiceId(doc.get("invoiceId").toString());
+            }
+        }
+
+        // Decrypt sendTickets.
+        if(doc.get("sendTickets") != null) {
+            try {
+                String sendTickets = EncryptUtils.decrypt(doc.get("sendTickets").toString(), doc.get("encryptSalt").toString());
+                booking.setSendTickets(Boolean.parseBoolean(sendTickets));
+            } catch(Exception ex) {
+                ex.printStackTrace();
+                booking.setSendTickets(Boolean.parseBoolean(doc.get("sendTickets").toString()));
+            }
+        }
+
         if(doc.get("encryptSalt") != null)
             booking.setEncryptSalt(doc.get("encryptSalt").toString());
 

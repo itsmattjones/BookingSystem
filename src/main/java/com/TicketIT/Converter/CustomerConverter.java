@@ -1,8 +1,10 @@
 package com.TicketIT.Converter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import com.TicketIT.Model.Customer;
+import com.TicketIT.Utils.EncryptUtils;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBObject;
 import org.bson.types.ObjectId;
@@ -22,11 +24,26 @@ public class CustomerConverter {
         if (customer.getId() != null)
             builder = builder.append("_id", new ObjectId(customer.getId()));
 
-        builder.append("email", customer.getEmail());
-        builder.append("name", customer.getName());
-        builder.append("address", customer.getAddress());
-        builder.append("telephone", customer.getTelephone());
-        builder.append("encryptSalt", customer.getEncryptSalt());
+        // If no salt assume data corruption.
+        if(customer.getEncryptSalt() != null) {
+            String salt = customer.getEncryptSalt();
+            try {
+                builder.append("email", EncryptUtils.encrypt(customer.getEmail(), salt));
+                builder.append("name", EncryptUtils.encrypt(customer.getName(), salt));
+
+                List<String> encryptedList = new ArrayList<>();
+                for(String address : customer.getAddress()){
+                    encryptedList.add(EncryptUtils.encrypt(address, salt));
+                }
+                builder.append("address", encryptedList);
+
+                builder.append("telephone", EncryptUtils.encrypt(customer.getTelephone(), salt));
+                builder.append("encryptSalt", customer.getEncryptSalt());
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
+
         return builder.get();
     }
 
@@ -42,14 +59,54 @@ public class CustomerConverter {
         ObjectId id = (ObjectId) doc.get("_id");
         customer.setId(id.toString());
 
-        if(doc.get("email") != null)
-            customer.setEmail(doc.get("email").toString());
-        if(doc.get("name") != null)
-            customer.setName(doc.get("name").toString());
-        if(doc.get("address") != null)
-            customer.setAddress((List<String>) doc.get("address"));
-        if(doc.get("telephone") != null)
-            customer.setTelephone(doc.get("telephone").toString());
+        // Decrypt email.
+        if(doc.get("email") != null) {
+            try {
+                String email = EncryptUtils.decrypt(doc.get("email").toString(), doc.get("encryptSalt").toString());
+                customer.setEmail(email);
+            } catch(Exception ex) {
+                ex.printStackTrace();
+                customer.setEmail(doc.get("email").toString());
+            }
+        }
+
+        // Decrypt name.
+        if(doc.get("name") != null) {
+            try {
+                String name = EncryptUtils.decrypt(doc.get("name").toString(), doc.get("encryptSalt").toString());
+                customer.setName(name);
+            } catch(Exception ex) {
+                ex.printStackTrace();
+                customer.setName(doc.get("name").toString());
+            }
+        }
+
+        // Decrypt address.
+        if(doc.get("address") != null) {
+            List<String> encryptedList = (List<String>) doc.get("address");
+            try {
+                List<String> decryptedList = new ArrayList<>();
+                for(String encryptedTicket : encryptedList) {
+                    decryptedList.add(EncryptUtils.decrypt(encryptedTicket, doc.get("encryptedSalt").toString()));
+                }
+                customer.setAddress(decryptedList);
+            } catch(Exception ex) {
+                ex.printStackTrace();
+                customer.setAddress(encryptedList);
+            }
+        }
+
+        // Decrypt telephone.
+        if(doc.get("telephone") != null) {
+            try {
+                String telephone = EncryptUtils.decrypt(doc.get("telephone").toString(), doc.get("encryptSalt").toString());
+                customer.setTelephone(telephone);
+            } catch(Exception ex) {
+                ex.printStackTrace();
+                customer.setTelephone(doc.get("telephone").toString());
+            }
+        }
+
         if(doc.get("encryptSalt") != null)
             customer.setEncryptSalt(doc.get("encryptSalt").toString());
 

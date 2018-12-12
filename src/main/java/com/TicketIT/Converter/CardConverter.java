@@ -31,7 +31,7 @@ public class CardConverter {
                 builder.append("number", EncryptUtils.encrypt(card.getNumber(), salt));
                 builder.append("expiry", EncryptUtils.encrypt(card.getExpiry(), salt));
                 builder.append("securityCode", EncryptUtils.encrypt(card.getSecurityCode(), salt));
-                builder.append("encryptSalt", card.getSecurityCode());
+                builder.append("encryptSalt", card.getEncryptSalt());
             } catch (Exception ex){
                 ex.printStackTrace();
             }

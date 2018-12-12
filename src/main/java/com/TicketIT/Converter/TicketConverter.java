@@ -1,10 +1,13 @@
 package com.TicketIT.Converter;
 
 import com.TicketIT.Model.Ticket;
+import com.TicketIT.Utils.EncryptUtils;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBObject;
 import org.bson.types.ObjectId;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class TicketConverter {

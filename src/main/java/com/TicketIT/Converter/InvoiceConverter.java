@@ -1,7 +1,10 @@
 package com.TicketIT.Converter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import com.TicketIT.Model.Invoice;
+import com.TicketIT.Utils.EncryptUtils;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBObject;
 import org.bson.types.ObjectId;
@@ -21,10 +24,19 @@ public class InvoiceConverter {
         if (invoice.getId() != null)
             builder = builder.append("_id", new ObjectId(invoice.getId()));
 
-        builder.append("amount", invoice.getAmount());
-        builder.append("cardId", invoice.getCardId());
-        builder.append("paid", invoice.getPaid());
-        builder.append("encryptSalt", invoice.getEncryptSalt());
+        // If no salt assume data corruption.
+        if(invoice.getEncryptSalt() != null) {
+            String salt = invoice.getEncryptSalt();
+            try {
+                builder.append("amount", EncryptUtils.encrypt(invoice.getAmount().toString(), salt));
+                builder.append("cardId", EncryptUtils.encrypt(invoice.getCardId(), salt));
+                builder.append("paid", EncryptUtils.encrypt(invoice.getPaid().toString(), salt));
+                builder.append("encryptSalt", invoice.getEncryptSalt());
+            } catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
+
 
         return builder.get();
     }
@@ -41,12 +53,39 @@ public class InvoiceConverter {
         ObjectId id = (ObjectId) doc.get("_id");
         invoice.setId(id.toString());
 
-        if(doc.get("amount") != null)
-            invoice.setAmount(Double.parseDouble(doc.get("amount").toString()));
-        if(doc.get("cardId") != null)
-            invoice.setCardId(doc.get("cardId").toString());
-        if(doc.get("paid") != null)
-            invoice.setPaid(Boolean.parseBoolean(doc.get("paid").toString()));
+        // Decrypt amount.
+        if(doc.get("amount") != null) {
+            try {
+                String amount = EncryptUtils.decrypt(doc.get("amount").toString(), doc.get("encryptSalt").toString());
+                invoice.setAmount(Double.parseDouble(amount));
+            } catch(Exception ex) {
+                ex.printStackTrace();
+                invoice.setAmount(Double.parseDouble(doc.get("amount").toString()));
+            }
+        }
+
+        // Decrypt cardId.
+        if(doc.get("cardId") != null) {
+            try {
+                String cardId = EncryptUtils.decrypt(doc.get("cardId").toString(), doc.get("encryptSalt").toString());
+                invoice.setCardId(cardId);
+            } catch(Exception ex) {
+                ex.printStackTrace();
+                invoice.setCardId(doc.get("cardId").toString());
+            }
+        }
+
+        // Decrypt paid.
+        if(doc.get("paid") != null) {
+            try {
+                String paid = EncryptUtils.decrypt(doc.get("paid").toString(), doc.get("encryptSalt").toString());
+                invoice.setPaid(Boolean.parseBoolean(paid));
+            } catch(Exception ex) {
+                ex.printStackTrace();
+                invoice.setPaid(Boolean.parseBoolean(doc.get("paid").toString()));
+            }
+        }
+
         if(doc.get("encryptSalt") != null)
             invoice.setEncryptSalt(doc.get("encryptSalt").toString());
 
