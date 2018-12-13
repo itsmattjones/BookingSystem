@@ -4,7 +4,8 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>Booking System - TicketIT</title>
         <meta name="description" content="A TicketIT Booking System, book your tickets here.">
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
+        <link rel="stylesheet" type="text/css" href="styles/adminDashboardEditStyle.css" />
     </head>
 
     <body>
@@ -31,10 +32,10 @@
             <h1>Edit event</h1><br>
             <h2>Event Details</h2>
             <!-- Editing of details of the event. -->
-            <form class="detailsForm" action="adminEdit" method="POST">
+            <form class="editEventForm" action="adminEdit" method="POST">
                 <input type="hidden" name="action" value="editEvent">
                 <input type="hidden" name="eventId" value="${eventId}">
-                <table class="detailsTable">
+                <table class="editEventTable">
                     <tr>
                         <td><input type="text" name="eventTitle" placeholder="Event Title"></td>
                         <td><input type="date" name="eventDate" placeholder="Event Date"></td>
@@ -52,10 +53,10 @@
             <br></br>
             <h2>Edit Event Tickets</h2>
             <!-- Create a new ticket for the event -->
-            <form class="infoSelectForm" action="adminEdit" method="POST">
+            <form class="informationForm" action="adminEdit" method="POST">
                 <input type="hidden" name="action" value="createTicket">
                 <input type="hidden" name="eventId" value="${eventId}">
-                <table class="infoSelectTable">
+                <table class="informationTable">
                     <tr>
                         <td>Ticket Name</td>
                         <td>Ticket Price</td>
@@ -72,15 +73,15 @@
             </form>
             <!-- List tickets for the event with option to delete. -->
             <c:forEach items="${eventTickets}" var="ticket">
-                <form class="infoSelectForm" action="adminEdit" method="POST">
+                <form class="informationForm" action="adminEdit" method="POST">
                     <input type="hidden" name="action" value="deleteTicket">
                     <input type="hidden" name="eventId" value="${eventId}">
                     <input type="hidden" name="ticketId" value="${ticket.getId()}">
-                    <table class="infoSelectTable">
+                    <table class="informationTable">
                         <tr>
                             <td><input type="text" name="ticketName" value="${ticket.getName()}" readonly="readonly"></td>
-                            <td><input type="text" name="ticketPrice" value="${ticket.getPrice()}" readonly="readonly"></td>
-                            <td><input type="text" name="ticketAvailable" value="${ticket.getNumberAvailable()}" readonly="readonly"></td>
+                            <td><input type="number" name="ticketPrice" value="${ticket.getPrice()}" readonly="readonly"></td>
+                            <td><input type="number" name="ticketAvailable" value="${ticket.getNumberAvailable()}" readonly="readonly"></td>
                             <td><button type="submit" style="text-align: center">Delete</button></td>
                         </tr>
                     </table>
@@ -90,7 +91,7 @@
         </div>
 
         <div class="pageFooter">
-            <span>Copyright 2018</span>
+            <br><span>Copyright 2018</span>
         </div>
     </body>
 </html>

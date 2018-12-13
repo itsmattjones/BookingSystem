@@ -1,18 +1,18 @@
-body {
-    background-color: rgba(46, 39, 50, 1.0);
-    font-family: "Arial";
-}
-body h1, h2 {
-    text-align: center;
-}
-
 /*
 * Main parts of the page.
 * Header, Content/Body and Footer.
 */
+body {
+    background-color: rgba(46, 39, 50, 1.0);
+    font-family: "Arial";
+    margin: 0 auto;
+}
+body h1, h2 {
+    text-align: center;
+}
 .pageHeader {
     background-color: rgba(232, 171, 85, 1.0);
-    margin: 0 auto 0 auto;
+    margin: 25px auto 0 auto;
     min-width: 700px;
     width: 70%;
     height: 100px;
@@ -27,8 +27,9 @@ body h1, h2 {
 }
 .pageFooter {
     background-color: rgba(91, 75, 99, 1.0);
+    color: rgb(255, 255, 255);
     border-radius: 0 0 20px 20px;
-    margin: 0 auto 0 auto;
+    margin: 0 auto 20px auto;
     min-width: 700px;
     width: 70%;
     height: 50px;
@@ -36,10 +37,9 @@ body h1, h2 {
 }
 
 /*
-* Parts of the header of the page.
+* Elements of the header section.
 */
 .websiteLogo {
-    background-color: rgba(120, 157, 200, 1.0);
     position: relative;
     left: 50px;
     top: 25px;
@@ -51,10 +51,11 @@ body h1, h2 {
 
 /*
 * Event summary dialogs that will be
-* listed on the website home page.
+* listed on the website home page, and other
+* pages throughout the website.
 */
 .eventSummary {
-    background-color: rgba(181, 82, 43, 1.0);
+    background-color: rgb(181, 82, 43);
     background-size: cover;
     margin: 10px auto 10px auto;
     width: 95%;
@@ -64,7 +65,7 @@ body h1, h2 {
     position: relative;
     color: rgb(255, 255, 255);
     text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px,
-                 #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+    #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
     float: left;
     width: 80%;
     height: 100%;
@@ -83,61 +84,10 @@ body h1, h2 {
 }
 .eventSummary #priceAndBuy #purchaseButton{
     border-radius: 10px;
+    border-color: rgb(12, 12, 12);
+    background-color: rgb(72, 72, 72);
+    color: rgb(255, 255, 255);
     margin-top: 50px;
     width: 80%;
-    height: 30px;
-}
-
-
-/*
-* Information Selection Table
-*/
-.infoSelectForm {
-    margin: 5px auto;
-    width: 80%;
-}
-.infoSelectForm button {
-    border-radius: 10px;
-    width: 90px;
-    height: 30px;
-}
-.infoSelectTable {
-    border-collapse: collapse;
-    text-align: center;
-    width: 100%;
-}
-.infoSelectTable td, .infoSelectTable th {
-    border: 1px solid #ddd;
-    text-align: center;
-    padding: 8px;
-}
-.infoSelectTable th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: rgba(198, 146, 71, 1.0);
-    color: white;
-}
-
-/*
-* Styled form for entering details
-*/
-.detailsTable {
-    border: None;
-    text-align: center;
-    width: 100%;
-}
-.detailsForm input[type=text], input[type=email],
-        input[type=password], select {
-    padding: 10px 14px;
-    margin: 2px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-.detailsForm button {
-    border-radius: 10px;
-    width: 90px;
     height: 30px;
 }

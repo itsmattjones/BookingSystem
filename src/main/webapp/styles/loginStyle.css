@@ -1,0 +1,30 @@
+/*
+==========================================================================
+   Login Page Styling
+==========================================================================
+*/
+
+.styledTable {
+    border: None;
+    text-align: center;
+    width: 100%;
+}
+
+.styledForm input[type=text], input[type=email], input[type=password],
+input[type=number], input[type=date], input[type=time], select {
+    padding: 10px 14px;
+    margin: 2px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.styledForm button {
+    border-radius: 10px;
+    border-color: rgb(86, 86, 86);
+    background-color: rgb(90, 90, 90);
+    color: rgb(255, 255, 255);
+    width: 90px;
+    height: 30px;
+}

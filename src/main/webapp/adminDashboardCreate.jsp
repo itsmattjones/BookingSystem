@@ -4,7 +4,8 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>Booking System - TicketIT</title>
         <meta name="description" content="A TicketIT Booking System, book your tickets here.">
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
+        <link rel="stylesheet" type="text/css" href="styles/adminDashboardCreateStyle.css" />
     </head>
 
     <body>
@@ -31,11 +32,11 @@
             <h1>Create a new event</h1><br>
 
             <!-- Form to create a new event. -->
-            <form class="detailsForm" action="adminCreate" method="POST">
-                <table class="detailsTable">
+            <form class="styledForm" action="adminCreate" method="POST">
+                <table class="styledTable">
                     <tr>
-                        <td><h2>Ticket</h2></td>
-                        <td><h2>Default Ticket</h2></td>
+                        <th><h2>Ticket</h2></th>
+                        <th><h2>Default Ticket</h2></th>
                     </tr>
                     <tr>
                         <td><input type="text" name="eventTitle" placeholder="Event Title" required></td>
@@ -54,17 +55,14 @@
                     </tr>
                     <tr>
                         <td><input type="time" name="eventTime" placeholder="Event Time" required></td>
-                    </tr>
-                    <tr>
-                        <td> </td>
-                        <td><button type="submit" style="text-align: center">Create</button></td>
+                        <td><button type="submit">Create</button></td>
                     </tr>
                 </table>
             </form>
         </div>
 
         <div class="pageFooter">
-            <span>Copyright 2018</span>
+            <br><span>Copyright 2018</span>
         </div>
     </body>
 </html>

@@ -4,7 +4,8 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>Booking System - TicketIT</title>
         <meta name="description" content="A TicketIT Booking System, book your tickets here.">
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
+        <link rel="stylesheet" type="text/css" href="styles/registerStyle.css" />
     </head>
 
     <body>
@@ -32,8 +33,8 @@
             <h1>Registration Form</h1>
 
             <!-- Register form -->
-            <form class="detailsForm" action="register" method="POST">
-                <table class="detailsTable">
+            <form class="styledForm" action="register" method="POST">
+                <table class="styledTable">
                     <tr>
                         <td><input type="text" name="name" placeholder="Full Name" required></td>
                         <td><input type="email" name="email" placeholder="Email" required></td>
@@ -76,7 +77,7 @@
         </div>
 
         <div class="pageFooter">
-            <span>Copyright 2018</span>
+            <br><span>Copyright 2018</span>
         </div>
     </body>
 </html>
