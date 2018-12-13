@@ -4,7 +4,8 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>Booking System - TicketIT</title>
         <meta name="description" content="A TicketIT Booking System, book your tickets here.">
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
+        <link rel="stylesheet" type="text/css" href="styles/adminDashboardStyle.css" />
     </head>
 
     <body>
@@ -28,44 +29,35 @@
         </div>
 
         <div class="pageContent">
-            <!-- Option to create an event. -->
-            <table class="detailsTable">
-                <tr>
-                    <th><span>Events</span></th>
-
-                    <!-- Option to create a new event -->
-                    <th>
-                        <form class="detailsForm" action="adminCreate" method="GET">
-                            <button id="createEventButton" type="submit">Create</button>
-                        </form>
-                    </th>
-                </tr>
-            </table>
+            <h1>Events</h1>
+            <form class="styledForm" action="adminCreate" method="GET">
+                <button id="createEventButton" type="submit">Create New</button>
+            </form>
 
             <!-- List events and have option to edit. -->
             <c:forEach items="${eventList}" var="event">
                 <div>
-                    <table class="detailsTable">
+                    <table class="styledTable" style="width: 80%;">
                         <tr>
                             <!-- List the event name -->
-                            <th><span>${event.getTitle()}</Span></th>
+                            <td><span>${event.getTitle()}</Span></td>
 
                             <!-- Option to edit the event -->
-                            <th>
-                                <form class="detailsForm" action="adminEdit" method="GET">
+                            <td style="width: 90px">
+                                <form class="styledForm" action="adminEdit" method="GET">
                                     <input type="hidden" name="eventId" value="${event.getId()}">
                                     <button id="editEventButton" type="submit">Edit</button>
                                 </form>
-                            </th>
+                            </td>
 
                             <!-- Option to delete the event -->
-                            <th>
-                                <form class="detailsForm" action="admin" method="POST">
+                            <td style="width: 90px;">
+                                <form class="styledForm" action="admin" method="POST">
                                     <input type="hidden" name="eventId" value="${event.getId()}">
                                     <input type="hidden" name="action" value="deleteEvent">
                                     <button id="deleteEventButton" type="submit">Delete</button>
                                 </form>
-                            </th>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -73,7 +65,7 @@
         </div>
 
         <div class="pageFooter">
-            <span>Copyright 2018</span>
+            <br><span>Copyright 2018</span>
         </div>
     </body>
 </html>

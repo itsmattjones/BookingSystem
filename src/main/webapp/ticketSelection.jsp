@@ -4,7 +4,8 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>Booking System - TicketIT</title>
         <meta name="description" content="A TicketIT Booking System, book your tickets here.">
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
+        <link rel="stylesheet" type="text/css" href="styles/ticketSelectionStyle.css" />
     </head>
 
     <body>
@@ -38,8 +39,8 @@
 
             <!-- Display tickets available for event and allow user selection. -->
             <h1>Available Tickets</h1>
-            <form class="infoSelectForm" action="checkout" method="GET">
-                <table class="infoSelectTable">
+            <form class="styledForm" action="checkout" method="GET">
+                <table class="styledTable">
                     <tr>
                         <th>Name</th>
                         <th>Price</th>
@@ -69,15 +70,13 @@
             </form><br>
 
             <!-- Cancel  button -->
-            <form class="detailsForm" action="home" method="POST">
-                <table class="detailsTable">
-                    <tr><td><button type="submit" style="text-align: center">Cancel</button></td></tr>
-                </table>
+            <form class="styledForm" action="home" method="POST">
+                 <button type="submit" style="margin-top: -30px">Cancel</button>
             </form>
         </div>
 
         <div class="pageFooter">
-            <span>Copyright 2018</span>
+            <br><span>Copyright 2018</span>
         </div>
     </body>
 </html>

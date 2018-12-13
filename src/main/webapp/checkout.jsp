@@ -4,7 +4,8 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>Booking System - TicketIT</title>
         <meta name="description" content="A TicketIT Booking System, book your tickets here.">
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
+        <link rel="stylesheet" type="text/css" href="styles/checkoutStyle.css" />
     </head>
 
     <body>
@@ -40,10 +41,10 @@
             <!-- Payment Form -->
             <!-- If the customer is not logged in then display un-filled form -->
             <c:if test="${!cookie.containsKey('memberId')}">
-                <form class="detailsForm" action="checkout" method="POST">
+                <form class="styledForm" action="checkout" method="POST">
                     <input type="hidden" name="bookingId" value="${booking.getId()}">
                     <input type="hidden" name="eventId" value="${chosenEvent.getId()}">
-                    <table class="detailsTable">
+                    <table class="styledTable">
                         <tr>
                             <td><input type="text" name="name" placeholder="Full Name" required></td>
                             <td><input type="email" name="email" placeholder="Email" required></td>
@@ -87,10 +88,10 @@
             </c:if>
             <!-- If the customer is logged in then display filled form -->
             <c:if test="${cookie.containsKey('memberId')}">
-                <form class="detailsForm" action="checkout" method="POST">
+                <form class="styledForm" action="checkout" method="POST">
                     <input type="hidden" name="bookingId" value="${booking.getId()}">
                     <input type="hidden" name="eventId" value="${chosenEvent.getId()}">
-                    <table class="detailsTable">
+                    <table class="styledTable">
                         <tr>
                             <td><input type="text" name="name" placeholder="Full Name" value="${member.getName()}" required></td>
                             <td><input type="email" name="email" placeholder="Email" value="${member.getEmail()}" required></td>
@@ -134,8 +135,8 @@
             </c:if>
 
             <!-- Cancel checkout button -->
-            <form class="detailsForm" action="home" method="POST">
-                <table class="detailsTable">
+            <form class="styledForm" action="home" method="POST">
+                <table class="styledTable">
                     <tr><td><input type="hidden" name="bookingId" value="${booking.getId()}"></td><td><button type="submit" style="text-align: center">Cancel</button></td></tr>
                 </table>
             </form>
@@ -143,7 +144,7 @@
         </div>
 
         <div class="pageFooter">
-            <span>Copyright 2018</span>
+            <br><span>Copyright 2018</span>
         </div>
     </body>
 </html>

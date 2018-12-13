@@ -1,0 +1,35 @@
+/*
+==========================================================================
+    Admin Dashboard Styling
+==========================================================================
+*/
+
+.styledTable {
+    border-collapse: collapse;
+    text-align: center;
+    margin: 5px auto;
+    width: 80%;
+}
+.styledTable td, .styledTable th {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+}
+.styledTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    color: white;
+}
+.styledForm {
+    text-align: center;
+}
+.styledForm button {
+    border-radius: 10px;
+    border-color: rgb(86, 86, 86);
+    background-color: rgb(90, 90, 90);
+    color: rgb(255, 255, 255);
+    width: 90px;
+    height: 30px;
+    vertical-align: center;
+}

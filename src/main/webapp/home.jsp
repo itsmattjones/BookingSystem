@@ -4,7 +4,7 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>Booking System - TicketIT</title>
         <meta name="description" content="A TicketIT Booking System, book your tickets here.">
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
     </head>
 
     <body>
@@ -46,8 +46,7 @@
         </div>
 
         <div class="pageFooter">
-            <span>Copyright 2018</span>
+            <br><span>Copyright 2018</span>
         </div>
     </body>
 </html>
-
