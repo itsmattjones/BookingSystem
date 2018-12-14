@@ -3,14 +3,18 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>TicketIT - Ticket Selection</title>
-        <meta name="description" content="A TicketIT Booking System, book your tickets here.">
+        <meta name="description" content="TicketIT booking ticket selection.">
         <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
         <link rel="stylesheet" type="text/css" href="styles/ticketSelectionStyle.css" />
     </head>
 
     <body>
+        <!-- The header section of the page -->
         <div id="header" class="pageHeader">
+            <!-- Displays the website logo.-->
             <img class="websiteLogo" src="images/logo.png" alt="TicketIT Logo">
+
+            <!-- Displays login/logout and dashboard buttons for users -->
             <div class="headerUserAccount">
                 <c:if test="${!cookie.containsKey('memberId')}">
                     <form action="login" method="GET" style="display:inline-block">
@@ -69,12 +73,13 @@
                 <br><button id="checkoutButton" type="submit" style="float: right;">Checkout</button>
             </form><br>
 
-            <!-- Cancel  button -->
+            <!-- Cancel booking button -->
             <form name="cancelForm" class="styledForm" action="home" method="POST">
                  <button name="cancelBooking" type="submit" style="margin-top: -30px">Cancel</button>
             </form>
         </div>
 
+        <!-- Footer at the bottom of the page -->
         <div id="footer" class="pageFooter">
             <br><span>Copyright 2018</span>
         </div>

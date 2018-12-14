@@ -14,6 +14,11 @@ import javax.servlet.http.*;
 import java.io.IOException;
 
 public class AdminCreateEventServlet extends HttpServlet {
+
+    /**
+     * doPost function for the admin creation page servlet.
+     * This handler will take event parameters and create a new event.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
         MongoDBMemberDAO memberDAO = new MongoDBMemberDAO(mongo);
@@ -47,6 +52,10 @@ public class AdminCreateEventServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/admin");
     }
 
+    /**
+     * doGet() function for the admin creation page servlet.
+     * This handler will show the user the page, if they're allowed to see it.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
         MongoDBMemberDAO memberDAO = new MongoDBMemberDAO(mongo);

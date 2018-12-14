@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class LogoutServlet extends HttpServlet {
+
+    /**
+     * doPost function for the logout page servlet.
+     * This handler will log the user out.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Remove cookies.
         Cookie cookie = new Cookie("memberId", "");
@@ -17,6 +22,10 @@ public class LogoutServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath());
     }
 
+    /**
+     * doGet function for the logout page servlet.
+     * This handler will redirect the user to the home page.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.sendRedirect(request.getContextPath());
     }

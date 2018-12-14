@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
+
+    /**
+     * doPost function for the login page servlet.
+     * This handler will process the login form for when the user
+     * enters their details.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
         MongoDBMemberDAO memberDAO = new MongoDBMemberDAO(mongo);
@@ -20,6 +26,7 @@ public class LoginServlet extends HttpServlet {
         if(memberDAO.DoesMemberExist(request.getParameter("userEmail").toLowerCase())) {
             Member member = memberDAO.GetMemberByEmail(request.getParameter("userEmail"));
             if(member.getPassword().equals(request.getParameter("userPassword"))){
+                // Create cookie if login successful.
                 Cookie cookie = new Cookie("memberId", member.getId());
                 cookie.setMaxAge(900);
                 response.addCookie(cookie);
@@ -35,6 +42,10 @@ public class LoginServlet extends HttpServlet {
         response.getWriter().println("</script>");
     }
 
+    /**
+     * doGet function for the login page servlet.
+     * This handler will show the user the login page.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/login.jsp").forward(request, response);
     }

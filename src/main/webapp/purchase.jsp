@@ -3,13 +3,17 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>TicketIT - Purchase</title>
-        <meta name="description" content="A TicketIT Booking System, book your tickets here.">
+        <meta name="description" content="Purchase successful!">
         <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
     </head>
 
     <body>
+        <!-- The header section of the page -->
         <div id="header" class="pageHeader">
+            <!-- Displays the website logo.-->
             <img class="websiteLogo" src="images/logo.png" alt="TicketIT Logo">
+
+            <!-- Displays login/logout and dashboard buttons for users -->
             <div class="headerUserAccount">
                 <c:if test="${!cookie.containsKey('memberId')}">
                     <form action="login" method="GET" style="display:inline-block">
@@ -28,20 +32,18 @@
         </div>
 
         <div id="content" class="pageContent">
-
             <!-- Display event summary -->
             <div class="eventSummary" style="background-image: url(${chosenEvent.getImageBackground()})"/>
                 <div id="titleAndDescription" style="width: 100%">
                     <p><b>${chosenEvent.getTitle()}</b><br>${chosenEvent.getDescription()}</p>
                 </div>
             </div>
-        <br>
-
-        <h1>Thank You</h1>
-        <h2>Your booking has been successful. You will get an email confirmation shortly.</h2>
-
+            <br>
+            <h1>Thank You</h1>
+            <h2>Your booking has been successful. You will get an email confirmation shortly.</h2>
         </div>
 
+        <!-- Footer at the bottom of the page-->
         <div id="footer" class="pageFooter">
             <br><span>Copyright 2018</span>
         </div>

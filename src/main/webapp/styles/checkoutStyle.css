@@ -15,7 +15,7 @@
 }
 
 .styledForm input[type=text], input[type=email], input[type=password],
-input[type=number], input[type=date], input[type=time], select {
+        input[type=number], input[type=date], input[type=time], select {
     padding: 10px 14px;
     margin: 2px 0;
     display: inline-block;

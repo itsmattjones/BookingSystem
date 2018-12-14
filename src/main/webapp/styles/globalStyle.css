@@ -1,4 +1,10 @@
 /*
+==========================================================================
+   Global Website Styling
+==========================================================================
+*/
+
+/*
 * Main parts of the page.
 * Header, Content/Body and Footer.
 */
@@ -7,9 +13,11 @@ body {
     font-family: "Arial";
     margin: 0 auto;
 }
+
 body h1, h2 {
     text-align: center;
 }
+
 .pageHeader {
     background-color: rgba(232, 171, 85, 1.0);
     margin: 25px auto 0 auto;
@@ -17,6 +25,7 @@ body h1, h2 {
     width: 70%;
     height: 100px;
 }
+
 .pageContent {
     background-color: rgba(252, 252, 252, 1.0);
     margin: 0 auto 0 auto;
@@ -25,6 +34,7 @@ body h1, h2 {
     width: 70%;
     min-height: 600px;
 }
+
 .pageFooter {
     background-color: rgba(91, 75, 99, 1.0);
     color: rgb(255, 255, 255);
@@ -44,6 +54,7 @@ body h1, h2 {
     left: 50px;
     top: 25px;
 }
+
 .headerUserAccount {
     position: relative;
     float: right;
@@ -61,6 +72,7 @@ body h1, h2 {
     width: 95%;
     height: 130px;
 }
+
 .eventSummary #titleAndDescription {
     position: relative;
     color: rgb(255, 255, 255);
@@ -70,11 +82,13 @@ body h1, h2 {
     width: 80%;
     height: 100%;
 }
+
 .eventSummary #titleAndDescription p {
     position: absolute;
     bottom: 0;
     left: 20px;
 }
+
 .eventSummary #priceAndBuy {
     background-color: rgba(255, 255, 255, 0.25);
     float: left;
@@ -85,6 +99,7 @@ body h1, h2 {
     width: 20%;
     height: 100%;
 }
+
 .eventSummary #priceAndBuy #purchaseButton{
     border-radius: 10px;
     border-color: rgb(12, 12, 12);
@@ -94,6 +109,7 @@ body h1, h2 {
     width: 80%;
     height: 30px;
 }
+
 .eventSummary button {
     border-radius: 10px;
     border-color: rgb(86, 86, 86);

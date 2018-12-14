@@ -8,8 +8,12 @@
     </head>
 
     <body>
+        <!-- The header section of the page -->
         <div id="header" class="pageHeader">
+            <!-- Displays the website logo.-->
             <img class="websiteLogo" src="images/logo.png" alt="TicketIT Logo">
+
+            <!-- Displays login/logout and dashboard buttons for users -->
             <div class="headerUserAccount">
                 <c:if test="${!cookie.containsKey('memberId')}">
                     <form action="login" method="GET" style="display:inline-block">
@@ -28,13 +32,15 @@
         </div>
 
         <div id="content" class="pageContent">
-            <!-- Dynamically add summary div for each event available -->
+            <!-- Dynamically add summary element for each event available -->
             <c:forEach items="${eventList}" var="event">
                 <div id="eventSummary" class="eventSummary"/>
+                    <!-- Displays event title and description -->
                     <div id="titleAndDescription" style="background-image: url(${event.getImageBackground()})">
                         <p><b>${event.getTitle()}</b><br>${event.getDescription()}</p>
                     </div>
 
+                    <!-- Purchase a ticket for the given event-->
                     <div id="priceAndBuy">
                         <form action="ticketSelection" method="POST">
                             <input type="hidden" name="eventId" value="${event.getId()}">
@@ -45,6 +51,7 @@
             </c:forEach>
         </div>
 
+        <!-- Footer at the bottom of the page -->
         <div id="footer" class="pageFooter">
             <br><span>Copyright 2018</span>
         </div>

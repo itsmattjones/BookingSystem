@@ -3,14 +3,18 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>TicketIT - Admin Dashboard Edit</title>
-        <meta name="description" content="A TicketIT Booking System, book your tickets here.">
+        <meta name="description" content="The edit event page of the Administration Dashboard.">
         <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
         <link rel="stylesheet" type="text/css" href="styles/adminDashboardEditStyle.css" />
     </head>
 
     <body>
+        <!-- The header section of the page -->
         <div id="header" class="pageHeader">
+            <!-- Displays the website logo.-->
             <img class="websiteLogo" src="images/logo.png" alt="TicketIT Logo">
+
+            <!-- Displays login/logout and dashboard buttons for users -->
             <div class="headerUserAccount">
                 <c:if test="${!cookie.containsKey('memberId')}">
                     <form action="login" method="GET" style="display:inline-block">
@@ -31,7 +35,7 @@
         <div id="content" class="pageContent">
             <h1>Edit event</h1><br>
             <h2>Event Details</h2>
-            <!-- Editing of details of the event. -->
+            <!-- Allows edits to be made to the given event -->
             <form class="editEventForm" action="adminEdit" method="POST">
                 <input type="hidden" name="action" value="editEvent">
                 <input type="hidden" name="eventId" value="${eventId}">
@@ -50,9 +54,9 @@
                     </tr>
                 </table>
             </form>
-            <br></br>
+            <br><br>
             <h2>Edit Event Tickets</h2>
-            <!-- Create a new ticket for the event -->
+            <!-- Allows creation of tickets for the given event. -->
             <form class="informationForm" action="adminEdit" method="POST">
                 <input type="hidden" name="action" value="createTicket">
                 <input type="hidden" name="eventId" value="${eventId}">
@@ -71,7 +75,7 @@
                     </tr>
                 </table>
             </form>
-            <!-- List tickets for the event with option to delete. -->
+            <!-- Lists tickets for the event with option to delete. -->
             <c:forEach items="${eventTickets}" var="ticket">
                 <form class="informationForm" action="adminEdit" method="POST">
                     <input type="hidden" name="action" value="deleteTicket">
@@ -90,6 +94,7 @@
 
         </div>
 
+        <!-- Footer at the bottom of the page -->
         <div id="footer" class="pageFooter">
             <br><span>Copyright 2018</span>
         </div>

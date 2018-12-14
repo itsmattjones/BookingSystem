@@ -13,6 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterServlet extends HttpServlet {
+
+    /**
+     * doPost function for the register page servlet.
+     * This handler will process the completed registration form,
+     * creating a new member.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
         MongoDBMemberDAO memberDAO = new MongoDBMemberDAO(mongo);
@@ -56,6 +62,10 @@ public class RegisterServlet extends HttpServlet {
         request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
+    /**
+     * doGet function for the register page servlet.
+     * This handler will show the user the register page.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/register.jsp").forward(request, response);
     }

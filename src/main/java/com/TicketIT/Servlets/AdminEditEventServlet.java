@@ -16,6 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdminEditEventServlet extends HttpServlet {
+
+    /**
+     * doPost function for the admin edit event page servlet.
+     * This handler will take the edits made to the event on the page, and
+     * update the Database accordingly.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
         MongoDBMemberDAO memberDAO = new MongoDBMemberDAO(mongo);
@@ -63,6 +69,11 @@ public class AdminEditEventServlet extends HttpServlet {
         request.getRequestDispatcher("/adminDashboardEdit.jsp").forward(request, response);
     }
 
+    /**
+     * doGet function for the admin edit event page servlet.
+     * This handler will show the user the dashboard page, if they're allowed to see it.
+     * customized for the given event for editing.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
         MongoDBMemberDAO memberDAO = new MongoDBMemberDAO(mongo);

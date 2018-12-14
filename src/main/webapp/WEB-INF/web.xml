@@ -7,6 +7,7 @@
 
     <display-name>TicketIT Booking System</display-name>
 
+    <!-- Parameters -->
     <context-param>
         <param-name>MONGODB_HOST</param-name>
         <param-value>localhost</param-value>
@@ -16,6 +17,7 @@
         <param-value>27017</param-value>
     </context-param>
 
+    <!-- Session Configuration -->
     <session-config>
         <session-timeout>
             30

@@ -10,6 +10,7 @@
     margin: 0px auto;
     width: 215px;
 }
+
 .editEventForm input[type=text], input[type=email], input[type=password],
 input[type=number], input[type=date], input[type=time], select {
     padding: 10px 14px;
@@ -19,6 +20,7 @@ input[type=number], input[type=date], input[type=time], select {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
 .editEventForm button {
     border-radius: 10px;
     border-color: rgb(86, 86, 86);
@@ -32,6 +34,7 @@ input[type=number], input[type=date], input[type=time], select {
 .informationForm {
     margin: 0px auto;
 }
+
 .informationForm button {
     border-radius: 10px;
     border-color: rgb(86, 86, 86);
@@ -40,8 +43,9 @@ input[type=number], input[type=date], input[type=time], select {
     width: 90px;
     height: 30px;
 }
+
 .informationForm input[type=text], input[type=email], input[type=password],
-input[type=number], input[type=date], input[type=time], select {
+        input[type=number], input[type=date], input[type=time], select {
     padding: 10px 14px;
     margin: 2px 0;
     display: inline-block;
@@ -50,16 +54,19 @@ input[type=number], input[type=date], input[type=time], select {
     box-sizing: border-box;
     width: 160px;
 }
+
 .informationTable {
     border-collapse: collapse;
     text-align: center;
     margin: 0px auto;
 }
+
 .informationTable td, .informationTable th {
     border: 1px solid #ddd;
     text-align: center;
     padding: 8px;
 }
+
 .informationTable th {
     padding-top: 12px;
     padding-bottom: 12px;

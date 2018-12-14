@@ -15,6 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TicketSelectionServlet extends HttpServlet {
+
+    /**
+     * doPost function for the ticket selection page servlet.
+     * This handler will display the ticket selection page customized
+     * for the given event.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
         MongoDBTicketDAO ticketDAO = new MongoDBTicketDAO(mongo);
@@ -33,6 +39,11 @@ public class TicketSelectionServlet extends HttpServlet {
         request.getRequestDispatcher("/ticketSelection.jsp").forward(request, response);
     }
 
+    /**
+     * doGet function for the ticket selection page servlet.
+     * This handler will redirect the user to the home page, as it
+     * requires an eventId.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.sendRedirect(request.getContextPath());
     }

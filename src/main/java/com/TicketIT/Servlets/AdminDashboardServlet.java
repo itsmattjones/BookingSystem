@@ -15,6 +15,11 @@ import java.io.IOException;
 import java.util.List;
 
 public class AdminDashboardServlet extends HttpServlet {
+
+    /**
+     * doPost function for the admin dashboard page servlet.
+     * This handler will process any actions from the admin page.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
         MongoDBMemberDAO memberDAO = new MongoDBMemberDAO(mongo);
@@ -37,6 +42,11 @@ public class AdminDashboardServlet extends HttpServlet {
         request.getRequestDispatcher("/adminDashboard.jsp").forward(request, response);
     }
 
+    /**
+     * doGet function for the admin dashboard page servlet.
+     * This handler will show the user the dashboard page, if they're allowed to see it.
+     * It will pass the eventList for displaying on the dashboard.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
         MongoDBMemberDAO memberDAO = new MongoDBMemberDAO(mongo);

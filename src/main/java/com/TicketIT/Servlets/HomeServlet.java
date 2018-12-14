@@ -16,6 +16,11 @@ import java.io.IOException;
 
 public class HomeServlet extends HttpServlet {
 
+    /**
+     * doPost function for the home page servlet.
+     * This handler will cancel a booking if a bookingId is provided, and then
+     * show the user the home page.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Get all events from database.
@@ -46,6 +51,10 @@ public class HomeServlet extends HttpServlet {
         request.getRequestDispatcher("/home.jsp").forward(request, response);
     }
 
+    /**
+     * doGet function for the home page servlet.
+     * This handler will show the user the home page.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // Get all events from database.

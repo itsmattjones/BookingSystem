@@ -14,6 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckoutServlet extends HttpServlet {
+
+    /**
+     * doPost function for the checkout page servlet.
+     * This handler will take the completed checkout form and process
+     * the booking.
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
         MongoDBEventDAO eventDAO = new MongoDBEventDAO(mongo);
@@ -67,6 +73,11 @@ public class CheckoutServlet extends HttpServlet {
         request.getRequestDispatcher("/purchase.jsp").forward(request, response);
     }
 
+    /**
+     * doGet function for the checkout page servlet.
+     * This handler will show the user the checkout page customized
+     * with the tickets selected on the ticket selection page.
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // The request must be to book an event.

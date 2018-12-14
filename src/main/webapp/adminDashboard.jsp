@@ -3,14 +3,18 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>TicketIT - Admin Dashboard</title>
-        <meta name="description" content="A TicketIT Booking System, book your tickets here.">
+        <meta name="description" content="The TicketIT Administration panel.">
         <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
         <link rel="stylesheet" type="text/css" href="styles/adminDashboardStyle.css" />
     </head>
 
     <body>
+        <!-- The header section of the page -->
         <div id="header" class="pageHeader">
+            <!-- Displays the website logo.-->
             <img class="websiteLogo" src="images/logo.png" alt="TicketIT Logo">
+
+            <!-- Displays login/logout and dashboard buttons for users -->
             <div class="headerUserAccount">
                 <c:if test="${!cookie.containsKey('memberId')}">
                     <form action="login" method="GET" style="display:inline-block">
@@ -30,6 +34,8 @@
 
         <div id="content" class="pageContent">
             <h1>Events</h1>
+
+            <!-- Button to create a new event -->
             <form class="styledForm" action="adminCreate" method="GET">
                 <button id="createEventButton" type="submit">Create New</button>
             </form>
@@ -64,6 +70,7 @@
             </c:forEach>
         </div>
 
+        <!-- The footer at the bottom of the page -->
         <div id="footer" class="pageFooter">
             <br><span>Copyright 2018</span>
         </div>

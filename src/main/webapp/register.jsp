@@ -3,14 +3,18 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>TicketIT - Register</title>
-        <meta name="description" content="A TicketIT Booking System, book your tickets here.">
+        <meta name="description" content="Register on the TicketIT website.">
         <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
         <link rel="stylesheet" type="text/css" href="styles/registerStyle.css" />
     </head>
 
     <body>
+        <!-- The header section of the page -->
         <div id="header" class="pageHeader">
+            <!-- Displays the website logo.-->
             <img class="websiteLogo" src="images/logo.png" alt="TicketIT Logo">
+
+            <!-- Displays login/logout and dashboard buttons for users -->
             <div class="headerUserAccount">
                 <c:if test="${!cookie.containsKey('memberId')}">
                     <form action="login" method="GET" style="display:inline-block">
@@ -32,7 +36,7 @@
             <br><br>
             <h1>Registration Form</h1>
 
-            <!-- Register form -->
+            <!-- Registration form -->
             <form name="registrationForm" class="styledForm" action="register" method="POST">
                 <table name="registrationTable" class="styledTable">
                     <tr>
@@ -77,6 +81,7 @@
             </form>
         </div>
 
+        <!-- Footer at the bottom of the page -->
         <div id="footer" class="pageFooter">
             <br><span>Copyright 2018</span>
         </div>
