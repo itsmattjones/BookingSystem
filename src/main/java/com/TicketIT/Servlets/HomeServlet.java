@@ -7,7 +7,6 @@ import com.TicketIT.DataAccessObject.MongoDBTicketDAO;
 import com.TicketIT.Model.Booking;
 import com.TicketIT.Model.Ticket;
 import com.mongodb.MongoClient;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

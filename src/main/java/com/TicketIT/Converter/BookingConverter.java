@@ -2,7 +2,6 @@ package com.TicketIT.Converter;
 
 import java.util.List;
 import com.TicketIT.Model.Booking;
-import com.TicketIT.Model.Ticket;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBObject;
 import org.bson.types.ObjectId;

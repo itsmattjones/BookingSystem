@@ -1,9 +1,6 @@
 package com.TicketIT.UnitTests;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
+import org.junit.*;
 import static net.sourceforge.jwebunit.junit.JWebUnit.*;
 
 /**

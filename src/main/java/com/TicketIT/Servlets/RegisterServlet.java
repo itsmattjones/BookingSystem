@@ -3,7 +3,6 @@ package com.TicketIT.Servlets;
 import com.TicketIT.DataAccessObject.*;
 import com.TicketIT.Model.*;
 import com.mongodb.MongoClient;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

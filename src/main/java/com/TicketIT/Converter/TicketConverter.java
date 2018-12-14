@@ -5,8 +5,6 @@ import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBObject;
 import org.bson.types.ObjectId;
 
-import java.util.UUID;
-
 public class TicketConverter {
 
     /**

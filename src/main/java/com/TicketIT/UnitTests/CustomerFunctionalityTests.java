@@ -1,14 +1,6 @@
 package com.TicketIT.UnitTests;
 
-import com.TicketIT.DataAccessObject.*;
-import com.TicketIT.Model.*;
-import com.mongodb.MongoClient;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import org.junit.*;
-import org.junit.runner.Description;
-
 import static net.sourceforge.jwebunit.junit.JWebUnit.*;
 
 /**

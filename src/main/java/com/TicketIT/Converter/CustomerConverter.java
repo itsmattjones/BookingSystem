@@ -1,7 +1,6 @@
 package com.TicketIT.Converter;
 
 import java.util.List;
-import java.util.UUID;
 import com.TicketIT.Model.Customer;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBObject;
