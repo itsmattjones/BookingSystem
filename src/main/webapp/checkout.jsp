@@ -135,13 +135,9 @@
             </c:if>
 
             <!-- Cancel checkout button -->
-            <form class="styledForm" action="home" method="POST">
-                <table class="styledTable">
-                    <tr>
-                        <td><input type="hidden" name="bookingId" value="${booking.getId()}"></td>
-                        <td><button name="cancelBooking" type="submit" style="text-align: center">Cancel</button></td>
-                    </tr>
-                </table>
+            <form name="cancelForm" class="styledForm" action="home" method="POST">
+                <input type="hidden" name="bookingId" value="${booking.getId()}">
+                <button name="cancelBooking" type="submit" style="text-align: center">Cancel</button>
             </form>
 
         </div>

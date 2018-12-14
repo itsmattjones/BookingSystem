@@ -17,7 +17,7 @@ public class LoginServlet extends HttpServlet {
         MongoDBMemberDAO memberDAO = new MongoDBMemberDAO(mongo);
 
         // Validate user login.
-        if(memberDAO.DoesMemberExist(request.getParameter("userEmail"))) {
+        if(memberDAO.DoesMemberExist(request.getParameter("userEmail").toLowerCase())) {
             Member member = memberDAO.GetMemberByEmail(request.getParameter("userEmail"));
             if(member.getPassword().equals(request.getParameter("userPassword"))){
                 Cookie cookie = new Cookie("memberId", member.getId());

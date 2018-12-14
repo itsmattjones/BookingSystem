@@ -88,7 +88,7 @@ public class MongoDBMemberDAO {
      * @return The member object from MongoDB.
      */
     public Member GetMemberByEmail(String email) {
-        DBObject query = BasicDBObjectBuilder.start().append("email", email.toLowerCase()).get();
+        DBObject query = BasicDBObjectBuilder.start().append("email", email).get();
         DBObject data = this.collection.findOne(query);
         return MemberConverter.ToMemberObject(data);
     }
@@ -99,7 +99,7 @@ public class MongoDBMemberDAO {
      * @return True/False whether exists.
      */
     public Boolean DoesMemberExist(String email) {
-        DBObject query = BasicDBObjectBuilder.start().append("email", email.toLowerCase()).get();
+        DBObject query = BasicDBObjectBuilder.start().append("email", email).get();
         DBObject data = this.collection.findOne(query);
         if(data != null)
             return true;

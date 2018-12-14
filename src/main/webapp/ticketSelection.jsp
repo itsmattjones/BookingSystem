@@ -70,7 +70,7 @@
             </form><br>
 
             <!-- Cancel  button -->
-            <form class="styledForm" action="home" method="POST">
+            <form name="cancelForm" class="styledForm" action="home" method="POST">
                  <button name="cancelBooking" type="submit" style="margin-top: -30px">Cancel</button>
             </form>
         </div>

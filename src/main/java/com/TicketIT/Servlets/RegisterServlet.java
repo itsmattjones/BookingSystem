@@ -20,7 +20,7 @@ public class RegisterServlet extends HttpServlet {
 
         // Populate Member object.
         Member member = memberDAO.CreateMember(new Member());
-        member.setEmail(request.getParameter("email"));
+        member.setEmail(request.getParameter("email").toLowerCase());
         member.setPassword(request.getParameter("password"));
         member.setName(request.getParameter("name"));
         member.setTelephone(request.getParameter("telephone"));

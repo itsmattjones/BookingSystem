@@ -41,6 +41,12 @@
             <artifactId>jwebunit-htmlunit-plugin</artifactId>
             <version>3.3</version>
         </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.0.6</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- JSTL libraries for JSP pages -->
         <dependency>

@@ -22,7 +22,7 @@ public class MemberConverter {
         if (member.getId() != null)
             builder = builder.append("_id", new ObjectId(member.getId()));
 
-        builder.append("email", member.getEmail().toLowerCase());
+        builder.append("email", member.getEmail());
         builder.append("password", member.getPassword());
         builder.append("name", member.getName());
         builder.append("address", member.getAddress());
@@ -45,7 +45,7 @@ public class MemberConverter {
         member.setId(id.toString());
 
         if(doc.get("email") != null)
-            member.setEmail(doc.get("email").toString().toLowerCase());
+            member.setEmail(doc.get("email").toString());
         if(doc.get("password") != null)
             member.setPassword(doc.get("password").toString());
         if(doc.get("name") != null)

@@ -2,12 +2,10 @@ package com.TicketIT.UnitTests;
 
 import com.TicketIT.DataAccessObject.*;
 import com.TicketIT.Model.*;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import com.mongodb.MongoClient;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import org.junit.*;
 import static net.sourceforge.jwebunit.junit.JWebUnit.*;
 
@@ -17,22 +15,23 @@ import static net.sourceforge.jwebunit.junit.JWebUnit.*;
 */
 public class CustomerFunctionalityTests {
 
-    // MongoDB Details
+    // Connection Details for MongoDB
     private final String MONGO_HOST = "localhost";
     private final Integer MONGO_PORT = 27017;
 
+    // Naming for objects within unit tests
     private final String TEST_EVENT_NAME = "_UnitTestTestEvent";
     private final String TEST_TICKET_NAME = "_UnitTestTicket";
     private final String TEST_CUSTOMER_NAME = "_UnitTestCustomer";
     private final String TEST_MEMBER_NAME = "_UnitTestMember";
 
-    // Test objects created
+    // objectIds of test objects (for reference within tests)
     private HashMap<String, String> testObjects = new HashMap<>();
 
     @Before
     public void setup() {
         setBaseUrl("http://localhost:8080");
-        addTestData();
+        createTestEventAndTicket();
     }
 
     @After
@@ -89,9 +88,16 @@ public class CustomerFunctionalityTests {
         assertTitleEquals("TicketIT - Home");
         submit(TEST_EVENT_NAME);
         assertTitleEquals("TicketIT - Ticket Selection");
+
         assertElementPresent("header");
         assertImagePresent("images/logo.png", "TicketIT Logo");
         assertButtonPresent("userLogin");
+
+        assertFormPresent("cancelForm");
+        setWorkingForm("cancelForm");
+        assertButtonPresentWithText("Cancel");
+        submit("cancelBooking");
+        assertTitleEquals("TicketIT - Home");
     }
 
     @Test
@@ -100,7 +106,14 @@ public class CustomerFunctionalityTests {
         assertTitleEquals("TicketIT - Home");
         submit(TEST_EVENT_NAME);
         assertTitleEquals("TicketIT - Ticket Selection");
+
         assertElementPresent("content");
+
+        assertFormPresent("cancelForm");
+        setWorkingForm("cancelForm");
+        assertButtonPresentWithText("Cancel");
+        submit("cancelBooking");
+        assertTitleEquals("TicketIT - Home");
     }
 
     @Test
@@ -109,8 +122,15 @@ public class CustomerFunctionalityTests {
         assertTitleEquals("TicketIT - Home");
         submit(TEST_EVENT_NAME);
         assertTitleEquals("TicketIT - Ticket Selection");
+
         assertElementPresent("footer");
         assertTextInElement("footer", "Copyright 2018");
+
+        assertFormPresent("cancelForm");
+        setWorkingForm("cancelForm");
+        assertButtonPresentWithText("Cancel");
+        submit("cancelBooking");
+        assertTitleEquals("TicketIT - Home");
     }
 
     @Test
@@ -119,10 +139,17 @@ public class CustomerFunctionalityTests {
         assertTitleEquals("TicketIT - Home");
         submit(TEST_EVENT_NAME);
         assertTitleEquals("TicketIT - Ticket Selection");
+
         assertElementPresent("eventSummary");
         assertElementPresent("titleAndDescription");
         assertTextPresent(TEST_EVENT_NAME);
         assertTextPresent("Test event for Unit Tests.");
+
+        assertFormPresent("cancelForm");
+        setWorkingForm("cancelForm");
+        assertButtonPresentWithText("Cancel");
+        submit("cancelBooking");
+        assertTitleEquals("TicketIT - Home");
     }
 
     @Test
@@ -131,7 +158,9 @@ public class CustomerFunctionalityTests {
         assertTitleEquals("TicketIT - Home");
         submit(TEST_EVENT_NAME);
         assertTitleEquals("TicketIT - Ticket Selection");
+
         assertFormPresent("ticketSelectionForm");
+        setWorkingForm("ticketSelectionForm");
         assertTablePresent("ticketSelectionTable");
         assertTextInTable("ticketSelectionTable", "Name");
         assertTextInTable("ticketSelectionTable", "Price");
@@ -141,6 +170,12 @@ public class CustomerFunctionalityTests {
         assertTextInTable("ticketSelectionTable", "10.99");
         assertTextInTable("ticketSelectionTable", "100");
         assertButtonPresent("checkoutButton");
+
+        assertFormPresent("cancelForm");
+        setWorkingForm("cancelForm");
+        assertButtonPresentWithText("Cancel");
+        submit("cancelBooking");
+        assertTitleEquals("TicketIT - Home");
     }
 
     @Test
@@ -149,6 +184,10 @@ public class CustomerFunctionalityTests {
         assertTitleEquals("TicketIT - Home");
         submit(TEST_EVENT_NAME);
         assertTitleEquals("TicketIT - Ticket Selection");
+
+        assertFormPresent("cancelForm");
+        setWorkingForm("cancelForm");
+        assertButtonPresentWithText("Cancel");
         submit("cancelBooking");
         assertTitleEquals("TicketIT - Home");
     }
@@ -158,9 +197,16 @@ public class CustomerFunctionalityTests {
         beginAt("checkout?" + testObjects.get("ticket") + "=1&eventId="
                 + testObjects.get("event") + "&memberId=0");
         assertTitleEquals("TicketIT - Checkout");
+
         assertElementPresent("header");
         assertImagePresent("images/logo.png", "TicketIT Logo");
         assertButtonPresent("userLogin");
+
+        assertFormPresent("cancelForm");
+        setWorkingForm("cancelForm");
+        assertButtonPresentWithText("Cancel");
+        submit("cancelBooking");
+        assertTitleEquals("TicketIT - Home");
     }
 
     @Test
@@ -168,7 +214,14 @@ public class CustomerFunctionalityTests {
         beginAt("checkout?" + testObjects.get("ticket") + "=1&eventId="
                 + testObjects.get("event") + "&memberId=0");
         assertTitleEquals("TicketIT - Checkout");
+
         assertElementPresent("content");
+
+        assertFormPresent("cancelForm");
+        setWorkingForm("cancelForm");
+        assertButtonPresentWithText("Cancel");
+        submit("cancelBooking");
+        assertTitleEquals("TicketIT - Home");
     }
 
     @Test
@@ -176,8 +229,15 @@ public class CustomerFunctionalityTests {
         beginAt("checkout?" + testObjects.get("ticket") + "=1&eventId="
                 + testObjects.get("event") + "&memberId=0");
         assertTitleEquals("TicketIT - Checkout");
+
         assertElementPresent("footer");
         assertTextInElement("footer", "Copyright 2018");
+
+        assertFormPresent("cancelForm");
+        setWorkingForm("cancelForm");
+        assertButtonPresentWithText("Cancel");
+        submit("cancelBooking");
+        assertTitleEquals("TicketIT - Home");
     }
 
     @Test
@@ -185,10 +245,17 @@ public class CustomerFunctionalityTests {
         beginAt("checkout?" + testObjects.get("ticket") + "=1&eventId="
                 + testObjects.get("event") + "&memberId=0");
         assertTitleEquals("TicketIT - Checkout");
+
         assertElementPresent("eventSummary");
         assertElementPresent("titleAndDescription");
         assertTextPresent(TEST_EVENT_NAME);
         assertTextPresent("Test event for Unit Tests.");
+
+        assertFormPresent("cancelForm");
+        setWorkingForm("cancelForm");
+        assertButtonPresentWithText("Cancel");
+        submit("cancelBooking");
+        assertTitleEquals("TicketIT - Home");
     }
 
     @Test
@@ -196,7 +263,9 @@ public class CustomerFunctionalityTests {
         beginAt("checkout?" + testObjects.get("ticket") + "=1&eventId="
                 + testObjects.get("event") + "&memberId=0");
         assertTitleEquals("TicketIT - Checkout");
+
         assertFormPresent("checkoutForm");
+        setWorkingForm("checkoutForm");
         assertTablePresent("checkoutTable");
         assertFormElementPresent("name");
         assertFormElementPresent("email");
@@ -213,6 +282,12 @@ public class CustomerFunctionalityTests {
         assertFormElementPresent("addressCountry");
         assertFormElementPresent("addressPostcode");
         assertButtonPresentWithText("Finish & Pay");
+
+        assertFormPresent("cancelForm");
+        setWorkingForm("cancelForm");
+        assertButtonPresentWithText("Cancel");
+        submit("cancelBooking");
+        assertTitleEquals("TicketIT - Home");
     }
 
     @Test
@@ -244,29 +319,25 @@ public class CustomerFunctionalityTests {
         beginAt("checkout?" + testObjects.get("ticket") + "=1&eventId="
                 + testObjects.get("event") + "&memberId=0");
         assertTitleEquals("TicketIT - Checkout");
+
+        assertFormPresent("cancelForm");
+        setWorkingForm("cancelForm");
+        assertButtonPresentWithText("Cancel");
+        submit("cancelBooking");
+
+        assertTitleEquals("TicketIT - Home");
     }
 
-
-
-    /*
-    *  Test Helper Methods
-    *  // TODO - NULL POINTER CHECKING!!!
-    */
-
-    private void addTestData() {
-        try {
-            createTestEventAndTicket();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
 
     /**
-     * Mega Function for delete Unit Test objects in MongoDB.
+     * Function for deleting Unit Test objects in the database after
+     * the unit tests have been executed.
      */
     private void removeTestData() {
         try {
             MongoClient mongo = new MongoClient(MONGO_HOST, MONGO_PORT);
+
+            // Create new instances of the required data access objects.
             MongoDBTicketDAO ticketDAO = new MongoDBTicketDAO(mongo);
             MongoDBEventDAO eventDAO = new MongoDBEventDAO(mongo);
             MongoDBCardDAO cardDAO = new MongoDBCardDAO(mongo);
@@ -276,47 +347,59 @@ public class CustomerFunctionalityTests {
             MongoDBMemberDAO memberDAO = new MongoDBMemberDAO(mongo);
 
             // Delete Unit Test Ticket Objects.
-            for(Ticket ticket : ticketDAO.GetAllTickets()){
-                if(ticket.getName().equals(TEST_TICKET_NAME))
-                    ticketDAO.DeleteTicket(ticket);
-            }
-
-            // Delete Unit Test Event Objects.
-            for(Event event : eventDAO.GetAllEvents()){
-                if(event.getTitle().equals(TEST_EVENT_NAME))
-                    eventDAO.DeleteEvent(event);
-            }
-
-            // Delete Unit Test Member & Member Card Objects.
-            for(Member member : memberDAO.GetAllMembers()){
-                if(member.getName().equals(TEST_MEMBER_NAME)){
-                    for(Card card : cardDAO.GetAllCards()) {
-                        if (card.getId().equals(member.getCardId()))
-                            cardDAO.DeleteCard(card);
-                    }
-                    memberDAO.DeleteMember(member);
+            if(ticketDAO.GetAllTickets() != null && ticketDAO.GetAllTickets().size() > 1) {
+                for (Ticket ticket : ticketDAO.GetAllTickets()) {
+                    if (ticket.getName().equals(TEST_TICKET_NAME))
+                        ticketDAO.DeleteTicket(ticket);
                 }
             }
 
-            // Mega Delete Loop.
+            // Delete Unit Test Event Objects.
+            if(eventDAO.GetAllEvents() != null && eventDAO.GetAllEvents().size() > 1) {
+                for (Event event : eventDAO.GetAllEvents()) {
+                    if (event.getTitle().equals(TEST_EVENT_NAME))
+                        eventDAO.DeleteEvent(event);
+                }
+            }
+
+            // Delete Unit Test Member & Member Card Objects.
+            if(memberDAO.GetAllMembers() != null && memberDAO.GetAllMembers().size() > 1) {
+                for (Member member : memberDAO.GetAllMembers()) {
+                    if (member.getName().equals(TEST_MEMBER_NAME)) {
+                        for (Card card : cardDAO.GetAllCards()) {
+                            if (card.getId().equals(member.getCardId()))
+                                cardDAO.DeleteCard(card);
+                        }
+                        memberDAO.DeleteMember(member);
+                    }
+                }
+            }
+
             // Delete Unit Test Customers, with their Bookings->Invoice->Card
-            for(Customer customer : customerDAO.GetAllCustomers()){
-                if(customer.getName().equals(TEST_CUSTOMER_NAME)){
-                    for(Booking booking : bookingDAO.GetAllBookings()){
-                        if(booking.getCustomerId().equals(customer.getId())) {
-                            for(Invoice invoice : invoiceDAO.GetAllInvoices()){
-                                if(invoice.getId().equals(booking.getInvoiceId())){
-                                    for(Card card : cardDAO.GetAllCards()){
-                                        if(invoice.getCardId().equals(card.getId()))
-                                            cardDAO.DeleteCard(card);
-                                    }
-                                    invoiceDAO.DeleteInvoice(invoice);
-                                }
+            if(customerDAO.GetAllCustomers() != null && customerDAO.GetAllCustomers().size() > 0) {
+                for (Customer customer : customerDAO.GetAllCustomers()) {
+                    if (customer.getName().equals(TEST_CUSTOMER_NAME)) {
+                        List<Booking> customerBookings = new ArrayList<>();
+
+                        // Get the customers bookings
+                        if (bookingDAO.GetAllBookings().size() > 0) {
+                            for (Booking booking : bookingDAO.GetAllBookings()) {
+                                if (booking.getCustomerId().equals(customer.getId()))
+                                    customerBookings.add(booking);
                             }
-                            bookingDAO.DeleteBooking(booking);
+
+                            // Delete booking and invoices with their linked cards.
+                            for (Booking booking : customerBookings) {
+                                Invoice invoice = invoiceDAO.GetInvoiceById(booking.getInvoiceId());
+                                cardDAO.DeleteCard(cardDAO.GetCardById(invoice.getCardId()));
+                                invoiceDAO.DeleteInvoice(invoice);
+                                bookingDAO.DeleteBooking(booking);
+                            }
+
+                            // Delete the customer
+                            customerDAO.DeleteCustomer(customer);
                         }
                     }
-                    customerDAO.DeleteCustomer(customer);
                 }
             }
 
