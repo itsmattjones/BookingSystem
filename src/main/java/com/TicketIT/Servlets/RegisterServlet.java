@@ -29,7 +29,7 @@ public class RegisterServlet extends HttpServlet {
         memberAddress.add(request.getParameter("addressLine2"));
         memberAddress.add(request.getParameter("addressLine3"));
         memberAddress.add(request.getParameter("addressCity"));
-        memberAddress.add(request.getParameter("addressCountry"));
+        memberAddress.add(request.getParameter("addressCounty"));
         memberAddress.add(request.getParameter("addressPostcode"));
         member.setAddress(memberAddress);
 

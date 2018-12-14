@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <title>Booking System - TicketIT</title>
+        <title>TicketIT - Register</title>
         <meta name="description" content="A TicketIT Booking System, book your tickets here.">
         <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
         <link rel="stylesheet" type="text/css" href="styles/registerStyle.css" />
@@ -66,7 +66,7 @@
                         <td><input type="text" name="cardSecurityCode" placeholder="Card Security Code" required></td>
                     </tr>
                     <tr>
-                        <td><input type="text" name="addressCountry" placeholder="Country" required></td>
+                        <td><input type="text" name="addressCounty" placeholder="County" required></td>
                     </tr>
                     <tr>
                         <td><input type="text" name="addressPostcode" placeholder="Postcode" required></td>

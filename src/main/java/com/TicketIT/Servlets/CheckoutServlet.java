@@ -35,7 +35,7 @@ public class CheckoutServlet extends HttpServlet {
         customerAddress.add(request.getParameter("addressLine2"));
         customerAddress.add(request.getParameter("addressLine3"));
         customerAddress.add(request.getParameter("addressCity"));
-        customerAddress.add(request.getParameter("addressCountry"));
+        customerAddress.add(request.getParameter("addressCounty"));
         customerAddress.add(request.getParameter("addressPostcode"));
         customer.setAddress(customerAddress);
 

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <title>Booking System - TicketIT</title>
+        <title>TicketIT - Ticket Selection</title>
         <meta name="description" content="A TicketIT Booking System, book your tickets here.">
         <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
         <link rel="stylesheet" type="text/css" href="styles/ticketSelectionStyle.css" />
@@ -30,7 +30,7 @@
 
         <div id="content" class="pageContent">
             <!-- Display event summary -->
-            <div class="eventSummary" style="background-image: url(${chosenEvent.getImageBackground()})"/>
+            <div id="eventSummary" class="eventSummary" style="background-image: url(${chosenEvent.getImageBackground()})"/>
                 <div id="titleAndDescription" style="width: 100%">
                     <p><b>${chosenEvent.getTitle()}</b><br>${chosenEvent.getDescription()}</p>
                 </div>
@@ -39,8 +39,8 @@
 
             <!-- Display tickets available for event and allow user selection. -->
             <h1>Available Tickets</h1>
-            <form class="styledForm" action="checkout" method="GET">
-                <table class="styledTable">
+            <form name="ticketSelectionForm" class="styledForm" action="checkout" method="GET">
+                <table name="ticketSelectionTable" class="styledTable">
                     <tr>
                         <th>Name</th>
                         <th>Price</th>
@@ -66,12 +66,12 @@
                     <input type="hidden" name="memberId" value="${cookie['memberId'].getValue()}">
                 </c:if>
 
-                <br><button type="submit" style="float: right;">Checkout</button>
+                <br><button id="checkoutButton" type="submit" style="float: right;">Checkout</button>
             </form><br>
 
             <!-- Cancel  button -->
             <form class="styledForm" action="home" method="POST">
-                 <button type="submit" style="margin-top: -30px">Cancel</button>
+                 <button name="cancelBooking" type="submit" style="margin-top: -30px">Cancel</button>
             </form>
         </div>
 

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <title>Booking System - TicketIT</title>
+        <title>TicketIT - Purchase</title>
         <meta name="description" content="A TicketIT Booking System, book your tickets here.">
         <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
     </head>

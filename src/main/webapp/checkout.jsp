@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <title>Booking System - TicketIT</title>
+        <title>TicketIT - Checkout</title>
         <meta name="description" content="A TicketIT Booking System, book your tickets here.">
         <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
         <link rel="stylesheet" type="text/css" href="styles/checkoutStyle.css" />
@@ -31,7 +31,7 @@
         <div id="content" class="pageContent">
 
             <!-- Display event summary -->
-            <div class="eventSummary" style="background-image: url(${chosenEvent.getImageBackground()})"/>
+            <div id="eventSummary" class="eventSummary" style="background-image: url(${chosenEvent.getImageBackground()})"/>
                 <div id="titleAndDescription" style="width: 100%">
                     <p><b>${chosenEvent.getTitle()}</b><br>${chosenEvent.getDescription()}</p>
                 </div>
@@ -41,10 +41,10 @@
             <!-- Payment Form -->
             <!-- If the customer is not logged in then display un-filled form -->
             <c:if test="${!cookie.containsKey('memberId')}">
-                <form class="styledForm" action="checkout" method="POST">
+                <form name="checkoutForm" class="styledForm" action="checkout" method="POST">
                     <input type="hidden" name="bookingId" value="${booking.getId()}">
                     <input type="hidden" name="eventId" value="${chosenEvent.getId()}">
-                    <table class="styledTable">
+                    <table name="checkoutTable" class="styledTable">
                         <tr>
                             <td><input type="text" name="name" placeholder="Full Name" required></td>
                             <td><input type="email" name="email" placeholder="Email" required></td>
@@ -81,17 +81,17 @@
                         </tr>
                         <tr>
                             <td><input type="text" name="addressPostcode" placeholder="Postcode" required></td>
-                            <td><button type="submit" style="text-align: center">Finish & Pay</button></td>
+                            <td><button name="FinishAndPay" type="submit" style="text-align: center">Finish & Pay</button></td>
                         </tr>
                     </table>
                 </form>
             </c:if>
             <!-- If the customer is logged in then display filled form -->
             <c:if test="${cookie.containsKey('memberId')}">
-                <form class="styledForm" action="checkout" method="POST">
+                <form name="checkoutForm" class="styledForm" action="checkout" method="POST">
                     <input type="hidden" name="bookingId" value="${booking.getId()}">
                     <input type="hidden" name="eventId" value="${chosenEvent.getId()}">
-                    <table class="styledTable">
+                    <table name="checkoutTable" class="styledTable">
                         <tr>
                             <td><input type="text" name="name" placeholder="Full Name" value="${member.getName()}" required></td>
                             <td><input type="email" name="email" placeholder="Email" value="${member.getEmail()}" required></td>
@@ -123,12 +123,12 @@
                             <td><input type="checkbox" name="sendTickets">Send tickets to address<br></td>
                         </tr>
                         <tr>
-                            <td><input type="text" name="addressCountry" placeholder="Country" value="${member.getAddress()[4]}" required></td>
+                            <td><input type="text" name="addressCounty" placeholder="County" value="${member.getAddress()[4]}" required></td>
                             <td>Due: ${invoice.getAmount()}</td>
                         </tr>
                         <tr>
                             <td><input type="text" name="addressPostcode" placeholder="Postcode" value="${member.getAddress()[5]}" required></td>
-                            <td><button type="submit" style="text-align: center">Finish & Pay</button></td>
+                            <td><button name="FinishAndPay" type="submit" style="text-align: center">Finish & Pay</button></td>
                         </tr>
                     </table>
                 </form>
@@ -137,7 +137,10 @@
             <!-- Cancel checkout button -->
             <form class="styledForm" action="home" method="POST">
                 <table class="styledTable">
-                    <tr><td><input type="hidden" name="bookingId" value="${booking.getId()}"></td><td><button type="submit" style="text-align: center">Cancel</button></td></tr>
+                    <tr>
+                        <td><input type="hidden" name="bookingId" value="${booking.getId()}"></td>
+                        <td><button name="cancelBooking" type="submit" style="text-align: center">Cancel</button></td>
+                    </tr>
                 </table>
             </form>
 

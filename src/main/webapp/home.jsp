@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <title>Booking System - TicketIT</title>
+        <title>TicketIT - Home</title>
         <meta name="description" content="A TicketIT Booking System, book your tickets here.">
         <link rel="stylesheet" type="text/css" href="styles/globalStyle.css" />
     </head>
@@ -30,7 +30,7 @@
         <div id="content" class="pageContent">
             <!-- Dynamically add summary div for each event available -->
             <c:forEach items="${eventList}" var="event">
-                <div class="eventSummary"/>
+                <div id="eventSummary" class="eventSummary"/>
                     <div id="titleAndDescription" style="background-image: url(${event.getImageBackground()})">
                         <p><b>${event.getTitle()}</b><br>${event.getDescription()}</p>
                     </div>
@@ -38,7 +38,7 @@
                     <div id="priceAndBuy">
                         <form action="ticketSelection" method="POST">
                             <input type="hidden" name="eventId" value="${event.getId()}">
-                            <button id="purchaseButton" type="submit">Purchase</button>
+                            <button name="${event.getTitle()}" id="${event.getTitle()}" type="submit">Purchase</button>
                         </form>
                     </div>
                 </div>
