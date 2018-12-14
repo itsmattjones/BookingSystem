@@ -69,18 +69,22 @@
                         </tr>
                         <tr>
                             <td><input type="text" name="addressLine3" placeholder="Address Line 3" required></td>
-                            <td><input type="text" name="cardSecurityCode" placeholder="Card Security Code" required></td>
+                            <td><input type="date" name="cardExpiry" placeholder="Card Expiry" required></td>
                         </tr>
                         <tr>
                             <td><input type="text" name="addressCity" placeholder="City" required></td>
-                            <td><input type="checkbox" name="sendTickets">Send tickets to address<br></td>
+                            <td><input type="text" name="cardSecurityCode" placeholder="Card Security Code" required></td>
                         </tr>
                         <tr>
                             <td><input type="text" name="addressCountry" placeholder="Country" required></td>
-                            <td>Due: ${invoice.getAmount()}</td>
+                            <td><input type="checkbox" name="sendTickets">Send tickets to address<br></td>
                         </tr>
                         <tr>
                             <td><input type="text" name="addressPostcode" placeholder="Postcode" required></td>
+                            <td>Due: ${invoice.getAmount()}</td>
+                        </tr>
+                        <tr>
+                            <td> </td>
                             <td><button name="FinishAndPay" type="submit" style="text-align: center">Finish & Pay</button></td>
                         </tr>
                     </table>
@@ -116,18 +120,22 @@
                         </tr>
                         <tr>
                             <td><input type="text" name="addressLine3" placeholder="Address Line 3" value="${member.getAddress()[2]}" required></td>
-                            <td><input type="text" name="cardSecurityCode" placeholder="Card Security Code" required></td>
+                            <td><input type="date" name="cardExpiry" placeholder="Card Expiry" value="${memberCard.getExpiry()}" required></td>
                         </tr>
                         <tr>
                             <td><input type="text" name="addressCity" placeholder="City" value="${member.getAddress()[3]}" required></td>
-                            <td><input type="checkbox" name="sendTickets">Send tickets to address<br></td>
+                            <td><input type="text" name="cardSecurityCode" placeholder="Card Security Code" required></td>
                         </tr>
                         <tr>
                             <td><input type="text" name="addressCounty" placeholder="County" value="${member.getAddress()[4]}" required></td>
-                            <td>Due: ${invoice.getAmount()}</td>
+                            <td><input type="checkbox" name="sendTickets">Send tickets to address<br></td>
                         </tr>
                         <tr>
                             <td><input type="text" name="addressPostcode" placeholder="Postcode" value="${member.getAddress()[5]}" required></td>
+                            <td>Due: ${invoice.getAmount()}</td>
+                        </tr>
+                        <tr>
+                            <td> </td>
                             <td><button name="FinishAndPay" type="submit" style="text-align: center">Finish & Pay</button></td>
                         </tr>
                     </table>

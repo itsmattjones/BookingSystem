@@ -63,14 +63,15 @@
                     </tr>
                     <tr>
                         <td><input type="text" name="addressCity" placeholder="City" required></td>
-                        <td><input type="text" name="cardSecurityCode" placeholder="Card Security Code" required></td>
+                        <td><input type="date" name="cardExpiry" placeholder="Card Expiry" required></td>
                     </tr>
                     <tr>
                         <td><input type="text" name="addressCounty" placeholder="County" required></td>
+                        <td><input type="text" name="cardSecurityCode" placeholder="Card Security Code" required></td>
                     </tr>
                     <tr>
                         <td><input type="text" name="addressPostcode" placeholder="Postcode" required></td>
-                        <td><button id="submitRegistration" type="submit" style="text-align: center">Register</button></td>
+                        <td><button name="submitRegistration" id="submitRegistration" type="submit" style="text-align: center">Register</button></td>
                     </tr>
                 </table>
             </form>

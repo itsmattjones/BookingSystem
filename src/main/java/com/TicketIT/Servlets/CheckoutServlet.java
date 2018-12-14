@@ -45,6 +45,7 @@ public class CheckoutServlet extends HttpServlet {
             card.setType(request.getParameter("cardType"));
             card.setHolder(request.getParameter("cardHolder"));
             card.setNumber(request.getParameter("cardNumber"));
+            card.setExpiry(request.getParameter("cardExpiry"));
             card.setSecurityCode(request.getParameter("cardSecurityCode"));
             cardDAO.UpdateCard(card);
             invoice.setCardId(cardDAO.GetCard(card).getId());

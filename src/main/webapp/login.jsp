@@ -42,7 +42,7 @@
                         <td><input type="password" name="userPassword" placeholder="Password" required></td>
                     </tr>
                     <tr>
-                        <td><button id="loginButton" ype="submit" style="text-align: center">Login</button></td>
+                        <td><button name="loginButton" id="loginButton" ype="submit" style="text-align: center">Login</button></td>
                     </tr>
                 </table>
             </form>
@@ -53,7 +53,7 @@
             <form name="registerForm" class="styledForm" action="register" method="GET">
                 <table name="registerTable" class="styledTable">
                     <tr>
-                        <td><button id="registerButton" type="submit" style="text-align: center">Register</button></td>
+                        <td><button name="registerButton" id="registerButton" type="submit" style="text-align: center">Register</button></td>
                     </tr>
                 </table>
             </form>
