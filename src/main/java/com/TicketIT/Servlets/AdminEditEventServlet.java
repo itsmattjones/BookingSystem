@@ -62,8 +62,16 @@ public class AdminEditEventServlet extends HttpServlet {
             }
         }
 
+        // Retrieve a list of tickets for the event.
+        List<Ticket> eventTickets = new ArrayList<>();
+        for(Ticket ticket : ticketDAO.GetAllTickets()){
+            if(ticket.getEventId().equals(request.getParameter("eventId")))
+                eventTickets.add(ticket);
+        }
+
         // After the action has been handled, return to edit page.
         request.setAttribute("eventId", request.getParameter("eventId"));
+        request.setAttribute("eventTickets", eventTickets);
         request.getRequestDispatcher("/adminDashboardEdit.jsp").forward(request, response);
     }
 
