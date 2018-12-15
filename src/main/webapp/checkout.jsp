@@ -79,7 +79,7 @@
                             <td><input type="text" name="cardSecurityCode" placeholder="Card Security Code" required></td>
                         </tr>
                         <tr>
-                            <td><input type="text" name="addressCountry" placeholder="Country" required></td>
+                            <td><input type="text" name="addressCounty" placeholder="County" required></td>
                             <td><input type="checkbox" name="sendTickets">Send tickets to address<br></td>
                         </tr>
                         <tr>
