@@ -39,7 +39,7 @@
             <form class="styledForm" action="adminCreate" method="POST">
                 <table class="styledTable">
                     <tr>
-                        <th><h2>Ticket</h2></th>
+                        <th><h2>Event</h2></th>
                         <th><h2>Default Ticket</h2></th>
                     </tr>
                     <tr>

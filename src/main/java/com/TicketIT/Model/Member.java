@@ -1,52 +1,20 @@
 package com.TicketIT.Model;
 
-import java.util.List;
-
-public class Member {
-
-    private String id;
-
-    private String email;
+public class Member extends Customer {
 
     private String password;
-
-    private String name;
-
-    private List<String> address;
-
-    private String telephone;
 
     private String cardId;
 
     private Boolean isAdmin;
 
-    public String getId() { return id; }
-
-    public void setId(String id) { this.id = id; }
-
-    public String getEmail() { return email; }
-
-    public void setEmail(String email) { this.email = email; }
-
     public String getPassword() { return password; }
 
     public void setPassword(String password) { this.password = password; }
 
-    public String getName() { return name; }
-
-    public void setName(String name) { this.name = name; }
-
-    public List<String> getAddress() { return address; }
-
-    public void setAddress(List<String> address) { this.address = address; }
-
-    public String getTelephone() { return this.telephone; }
-
-    public void setTelephone(String telephone) { this.telephone = telephone; }
-
     public String getCardId() { return this.cardId; }
 
-    public void setCardId(String cardid) { this.cardId = cardid; }
+    public void setCardId(String cardId) { this.cardId = cardId; }
 
     public Boolean getIsAdmin() { return this.isAdmin; }
 
