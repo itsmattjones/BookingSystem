@@ -1,4 +1,4 @@
-package com.TicketIT.UnitTests;
+package com.TicketIT;
 
 import com.TicketIT.DataAccessObject.*;
 import com.TicketIT.Model.*;

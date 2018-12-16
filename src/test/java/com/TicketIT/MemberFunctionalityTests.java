@@ -1,4 +1,4 @@
-package com.TicketIT.UnitTests;
+package com.TicketIT;
 
 import org.junit.*;
 import static net.sourceforge.jwebunit.junit.JWebUnit.*;
