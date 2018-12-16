@@ -48,6 +48,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- For secure data encryption -->
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+
         <!-- JSTL libraries for JSP pages -->
         <dependency>
             <groupId>jstl</groupId>

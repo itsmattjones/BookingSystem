@@ -1,6 +1,7 @@
 package com.TicketIT.Converter;
 
 import com.TicketIT.Model.Card;
+import com.TicketIT.Utils.EncryptUtils;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBObject;
 import org.bson.types.ObjectId;
@@ -20,11 +21,16 @@ public class CardConverter {
         if (card.getId() != null)
             builder = builder.append("_id", new ObjectId(card.getId()));
 
-        builder.append("type", card.getType());
-        builder.append("holder", card.getHolder());
-        builder.append("number", card.getNumber());
-        builder.append("expiry", card.getExpiry());
-        builder.append("securityCode", card.getSecurityCode());
+        // New Encrypted Salt generated each time it's pushed to database.
+        String newSalt = EncryptUtils.getSalt();
+
+        builder.append("type", EncryptUtils.encrypt(card.getType(), newSalt));
+        builder.append("holder", EncryptUtils.encrypt(card.getHolder(), newSalt));
+        builder.append("number", EncryptUtils.encrypt(card.getNumber(), newSalt));
+        builder.append("expiry", EncryptUtils.encrypt(card.getExpiry(), newSalt));
+        builder.append("securityCode", EncryptUtils.encrypt(card.getSecurityCode(), newSalt));
+        builder.append("slt", newSalt);
+
         return builder.get();
     }
 
@@ -41,15 +47,15 @@ public class CardConverter {
         card.setId(id.toString());
 
         if(doc.get("type") != null)
-            card.setType(doc.get("type").toString());
+            card.setType(EncryptUtils.decrypt(doc.get("type").toString(), doc.get("slt").toString()));
         if(doc.get("holder") != null)
-            card.setHolder(doc.get("holder").toString());
+            card.setHolder(EncryptUtils.decrypt(doc.get("holder").toString(), doc.get("slt").toString()));
         if(doc.get("number") != null)
-            card.setNumber(doc.get("number").toString());
+            card.setNumber(EncryptUtils.decrypt(doc.get("number").toString(), doc.get("slt").toString()));
         if(doc.get("expiry") != null)
-            card.setExpiry(doc.get("expiry").toString());
+            card.setExpiry(EncryptUtils.decrypt(doc.get("expiry").toString(), doc.get("slt").toString()));
         if(doc.get("securityCode") != null)
-            card.setSecurityCode(doc.get("securityCode").toString());
+            card.setSecurityCode(EncryptUtils.decrypt(doc.get("securityCode").toString(), doc.get("slt").toString()));
 
         return card;
     }

@@ -1,6 +1,7 @@
 package com.TicketIT.Converter;
 
 import com.TicketIT.Model.Member;
+import com.TicketIT.Utils.EncryptUtils;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBObject;
 import org.bson.types.ObjectId;
@@ -21,13 +22,21 @@ public class MemberConverter {
         if (member.getId() != null)
             builder = builder.append("_id", new ObjectId(member.getId()));
 
+        // New Encrypted salt generated each time it's pushed to database.
+        String newSalt = EncryptUtils.getSalt();
+
         builder.append("email", member.getEmail());
-        builder.append("password", member.getPassword());
+
+        // Ecnrypts the members password.
+        builder.append("password", EncryptUtils.encrypt(member.getPassword(), newSalt));
+
         builder.append("name", member.getName());
         builder.append("address", member.getAddress());
         builder.append("telephone", member.getTelephone());
         builder.append("cardId", member.getCardId());
         builder.append("isAdmin", member.getIsAdmin());
+        builder.append("slt", newSalt);
+
         return builder.get();
     }
 
@@ -45,8 +54,11 @@ public class MemberConverter {
 
         if(doc.get("email") != null)
             member.setEmail(doc.get("email").toString());
+
+        // Decrypts the members password.
         if(doc.get("password") != null)
-            member.setPassword(doc.get("password").toString());
+            member.setPassword(EncryptUtils.decrypt(doc.get("password").toString(), doc.get("slt").toString()));
+
         if(doc.get("name") != null)
             member.setName(doc.get("name").toString());
         if(doc.get("address") != null)
