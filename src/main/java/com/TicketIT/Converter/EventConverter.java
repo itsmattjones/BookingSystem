@@ -22,6 +22,7 @@ public class EventConverter {
 
         builder.append("title", event.getTitle());
         builder.append("description", event.getDescription());
+        builder.append("location", event.getLocation());
         builder.append("date", event.getDate());
         builder.append("time", event.getTime());
         return builder.get();
@@ -43,6 +44,8 @@ public class EventConverter {
             event.setTitle(doc.get("title").toString());
         if(doc.get("description") != null)
             event.setDescription(doc.get("description").toString());
+        if(doc.get("location") != null)
+            event.setLocation(doc.get("location").toString());
         if(doc.get("date") != null)
             event.setDate(doc.get("date").toString());
         if(doc.get("time") != null)

@@ -10,6 +10,8 @@ public class Event {
 
     private String description;
 
+    private String location;
+
     private String date;
 
     private String time;
@@ -25,6 +27,10 @@ public class Event {
     public String getDescription() { return description; }
 
     public void setDescription(String description) { this.description = description; }
+
+    public String getLocation() { return location; }
+
+    public void setLocation(String location) { this.location = location; }
 
     public String getDate() { return date; }
 

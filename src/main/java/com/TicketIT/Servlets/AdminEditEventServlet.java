@@ -44,6 +44,7 @@ public class AdminEditEventServlet extends HttpServlet {
                 Event event = eventDAO.GetEventById(request.getParameter("eventId"));
                 event.setTitle(request.getParameter("eventTitle"));
                 event.setDescription(request.getParameter("eventDesc"));
+                event.setLocation(request.getParameter("eventLocation"));
                 event.setDate(request.getParameter("eventDate"));
                 event.setTime(request.getParameter("eventTime"));
                 eventDAO.UpdateEvent(event);

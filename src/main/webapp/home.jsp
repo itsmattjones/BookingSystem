@@ -37,7 +37,7 @@
                 <div id="eventSummary" class="eventSummary"/>
                     <!-- Displays event title and description -->
                     <div id="titleAndDescription" style="background-image: url(${event.getImageBackground()})">
-                        <p><b>${event.getTitle()}</b><br>${event.getDescription()}</p>
+                        <p><b>${event.getTitle()}</b><br><br>${event.getLocation()}<br><br>${event.getDescription()}</p>
                     </div>
 
                     <!-- Purchase a ticket for the given event-->

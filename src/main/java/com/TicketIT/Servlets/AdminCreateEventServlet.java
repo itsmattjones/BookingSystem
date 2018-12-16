@@ -32,6 +32,7 @@ public class AdminCreateEventServlet extends HttpServlet {
         Event event = eventDAO.CreateEvent(new Event());
         event.setTitle(request.getParameter("eventTitle"));
         event.setDescription(request.getParameter("eventDesc"));
+        event.setLocation(request.getParameter("eventLocation"));
         event.setDate(request.getParameter("eventDate"));
         event.setTime(request.getParameter("eventTime"));
 

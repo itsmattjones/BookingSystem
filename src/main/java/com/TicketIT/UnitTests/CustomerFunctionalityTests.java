@@ -343,7 +343,7 @@ public class CustomerFunctionalityTests {
         assertFormElementPresent("cardSecurityCode");
         assertFormElementPresent("addressCity");
         assertFormElementPresent("sendTickets");
-        assertFormElementPresent("addressCountry");
+        assertFormElementPresent("addressCounty");
         assertFormElementPresent("addressPostcode");
         assertButtonPresentWithText("Finish & Pay");
 
@@ -375,7 +375,7 @@ public class CustomerFunctionalityTests {
         setTextField("cardNumber", "0123456789");
         setTextField("addressLine3", "Somewhere");
         setTextField("addressCity", "Somewhere");
-        setTextField("addressCountry", "Somewhere");
+        setTextField("addressCounty", "Somewhere");
         setTextField("cardExpiry", "01/01");
 
         submit("FinishAndPay");

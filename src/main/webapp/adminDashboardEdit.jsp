@@ -45,8 +45,11 @@
                         <td><input type="date" name="eventDate" placeholder="Event Date"></td>
                     </tr>
                     <tr>
-                        <td><input type="text" name="eventDesc" placeholder="Event Description"></td>
+                        <td><input type="text" name="eventLocation" placeholder="Event Location"></td>
                         <td><input type="time" name="eventTime" placeholder="Event Time"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="eventDesc" placeholder="Event Description"></td>
                     </tr>
                     <tr>
                         <td> </td>
