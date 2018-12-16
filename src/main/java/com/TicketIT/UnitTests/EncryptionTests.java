@@ -14,7 +14,7 @@ public class EncryptionTests {
         String stringToEncrypt = "testString";
         String salt = EncryptUtils.getSalt();
         String encryptedString = EncryptUtils.encrypt(stringToEncrypt, salt);
-        assert(encryptedString != stringToEncrypt);
+        assert(!encryptedString.equals(stringToEncrypt));
     }
 
     @Test
